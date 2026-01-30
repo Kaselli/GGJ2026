@@ -10,19 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GGJ2026"
-config/features=PackedStringArray("4.6", "Mobile")
-config/icon="res://icon.svg"
+config/name="EzDialogue"
+run/main_scene="res://crpg_dialogue_demo/BaldursGate.tscn"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://addons/ez_dialogue/icon.png"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ez_dialogue/plugin.cfg")
-
-[physics]
-
-3d/physics_engine="Jolt Physics"
-
-[rendering]
-
-rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
