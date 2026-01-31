@@ -19,8 +19,9 @@ signal typewriter_finished(response: DialogueResponse)
 @export var next_scene_path: String = ""
 
 var dialogue_finished = false
-
+var typewriter_tween: Tween
 var button_cache: Array[DialogueButton] = []
+var current_response: DialogueResponse
 
 @onready var dialogue_handler: EzDialogue = $EzDialogue
 #@onready var roll_handler = $"../RollBox"
@@ -34,8 +35,13 @@ func _ready():
 	character_name_handler.hide_speaking_character_name_ui()
 	typewriter_finished.connect(_on_typewriter_finished)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("mouse_click"):
+		skip_typewriter()
+
 func _on_typewriter_finished(response: DialogueResponse):
-	print("Typewriter finished for text: " + response.text)
+	#print("Typewriter finished for text: " + response.text)
+	current_response = null
 	if response.choices.is_empty():
 		add_choice("[...]", 0)
 	else:
@@ -57,24 +63,34 @@ func add_text(response: DialogueResponse) -> void:
 	call_deferred("_typewriter_effect", response)
 
 func _typewriter_effect(response: DialogueResponse) -> void:
-	var text = response.text
-	$text.text = ""
-	var char_index: int = 0
-	var total_length: int = text.length()
-
-	var last_character
-	while char_index < total_length:
-		$text.text += text[char_index]
-		char_index += 1
-		if char_index == total_length - 1:
-			get_tree().create_timer(typewriter_speed).timeout.connect(func():
-				typewriter_finished.emit(response)
-			)
-		else:
-			await get_tree().create_timer(typewriter_speed).timeout
+	current_response = response
+	var text_content = response.text
+	$text.text = text_content
+	$text.visible_ratio = 0
 	
-	if total_length == 0:
+	# Kill any existing tween to prevent overlapping effects
+	if typewriter_tween:
+		typewriter_tween.kill()
+	
+	typewriter_tween = create_tween()
+	
+	# Calculate duration based on text length and speed
+	var duration = text_content.length() * typewriter_speed
+	
+	# Animate the visible_ratio from 0 to 1
+	typewriter_tween.tween_property($text, "visible_ratio", 1.0, duration)
+	
+	# Connect the finished signal
+	typewriter_tween.finished.connect(func():
 		typewriter_finished.emit(response)
+	)
+
+func skip_typewriter() -> void:
+	if typewriter_tween and typewriter_tween.is_running():
+		typewriter_tween.kill() # Stop the animation
+		$text.visible_ratio = 1.0 # Show all text immediately
+		# Manually emit since the tween was killed
+		typewriter_finished.emit(current_response)
 
 func add_choice(choice_text: String, id: int):
 	if button_cache.size() < id + 1:
