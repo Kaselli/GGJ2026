@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://5oo0u215l715"]
+
+[ext_resource type="Script" uid="uid://dx5nymtt51jkg" path="res://scripts/utils/mask_slider.gd" id="1_dt331"]
+[ext_resource type="Texture2D" uid="uid://lshkf6hny2s6" path="res://assets/sprites/ggjmask1.png" id="1_t3vef"]
+
+[node name="MaskSlider" type="Control" unique_id=267539981]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1536.0
+size_flags_vertical = 0
+script = ExtResource("1_dt331")
+
+[node name="MaskSprite" type="Sprite2D" parent="." unique_id=158647594]
+z_index = 2
+position = Vector2(8.695, 0)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_t3vef")

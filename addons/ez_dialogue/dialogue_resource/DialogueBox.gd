@@ -1,7 +1,9 @@
 extends VBoxContainer
+signal state_changed(state_name: String, new_value: int)
 
 @export var dialogue: JSON
 
+@onready var mask_slider = $SpriteHandler/MaskSlider
 @onready var dialogue_choice_res = preload("res://crpg_dialogue_demo/DialogueButton.tscn")
 
 @export var state: Dictionary = {}
@@ -83,9 +85,10 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		amount = int(params[2])
 		if param_name in state:
 			state[param_name] += amount
-			print(param_name + "': " + str(state[param_name]))
+			state_changed.emit(param_name, state[param_name])
+			print(param_name + ": " + str(state[param_name]))
 		else:
-			print("[changeparam] Warning: Parameter '" + param_name + "' not found in state dictionary.")
+			print("[changeparam] Warning: Parameter " + param_name + " not found in state dictionary.")
 	elif params[0] == "setparam":
 		var param_name: String = params[1]
 		var amount: int
@@ -95,9 +98,10 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		amount = int(params[2])
 		if param_name in state:
 			state[param_name] = amount
-			print("Set parameter '" + param_name + "' to: " + str(state[param_name]))
+			state_changed.emit(param_name, state[param_name])
+			print("Set parameter " + param_name + " to: " + str(state[param_name]))
 		else:
-			print("[setparam] Warning: Parameter '" + param_name + "' not found in state dictionary.")
+			print("[setparam] Warning: Parameter " + param_name + " not found in state dictionary.")
 	elif params[0] == "debug":
 		var message: String = params[1]
 		print("[print signal]: " + message)
@@ -132,10 +136,10 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 					print("[checkparam] Warning: Unrecognized comparison type '" + comparison_type + "'.")
 					return
 
-			print("[checkparam] Comparison result for '" + param_name + "': " + str(comparison_result))
+			print("[checkparam] Comparison result for " + param_name + ": " + str(comparison_result))
 			state["comparison_result"] = comparison_result
 		else:
-			print("[checkparam] Warning: Parameter '" + param_name + "' not found in state dictionary.")
+			print("[checkparam] Warning: Parameter " + param_name + " not found in state dictionary.")
 	elif params[0] == "highestparam":
 		var highest_param: String = ""
 		var highest_value: int = -INF
@@ -153,7 +157,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 					return
 
 		if highest_param != "":
-			print("[highestparam] Highest parameter is '" + highest_param + "' with value: " + str(highest_value))
+			print("[highestparam] Highest parameter is " + highest_param + " with value: " + str(highest_value))
 			state["highest_param"] = highest_param
 		else:
 			print("[highestparam] Warning: Either No integer parameters found in state dictionary or no states in it at all.")
@@ -190,13 +194,13 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
 		print("[custom_signal] Error: There are no parameters/unrecognized ones in the specified signals. Following are the available signals:")
-		print("PARAMETERS SIGNALS:")
+		print("PARAMETERS RELATED SIGNALS:")
 		print("signal(changeparam,\"paramname\",value)")
 		print("signal(setparam,\"paramname\",value)")
 		print("signal(debug,\"message\")")
 		print("signal(checkparam,\"<|>|<=|>=|==|!=\",\"paramname\",value) => comparison_result")
 		print("signal(highestparam) => highest_param")
-		print("VISUAL SIGNALS:")
+		print("VISUAL RELATED SIGNALS:")
 		print("signal(changesprites,\"leftcharactername\",\"leftcharacterexpression\",\"rightcharactername\",\"rightcharacterexpression\")")
 		print("signal(hidesprites)")
 		print("signal(hideleftsprite)")
