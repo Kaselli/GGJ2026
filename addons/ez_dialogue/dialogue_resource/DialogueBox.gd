@@ -13,6 +13,8 @@ signal state_changed(state_name: String, new_value: int)
 @export var dialogue_width_minimized: float = 1350.0
 @export var dialogue_width_maximized: float = 1728.0
 
+@export var next_scene_path: String = ""
+
 var dialogue_finished = false
 var is_rolling = false
 
@@ -166,7 +168,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		else:
 			print("[highestparam] Warning: Either No integer parameters found in state dictionary or no states in it at all.")
 
-	########################### VISUAL AND CHATBOX PARAMETERS SIGNALS HANDLED IN THIS SECTION ###########################
+	########################### VISUAL AND CHATBOX SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "changesprites":
 			var left_character_name: String = params[1]
 			var left_character_expression: String = params[2]
@@ -198,8 +200,27 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			character_name_handler.hide_speaking_character_name_ui()
 		else:
 			var character_name: String = params[1]
-			character_name_handler.set_speaking_character_name(character_name)
-	
+			character_name_handler.set_speaking_character_name(character_name)	
+	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
+	elif params[0] == "playsound":
+		if params.size() < 2:
+			print("[playsound] Warning: No sound file specified.")
+			return
+		if not ResourceLoader.exists(params[1]):
+			print("[playsound] Warning: Sound file " + params[1] + " does not exist.")
+			return
+		if %SFXAudioStreamPlayer.stream != null:
+			%SFXAudioStreamPlayer.stop() 
+		%SFXAudioStreamPlayer.play(params[1])
+	elif params[0] == "stopsound":
+		%SFXAudioStreamPlayer.stop()
+		if %SFXAudioStreamPlayer.stream != null:
+			%SFXAudioStreamPlayer.stream = null
+
+	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
+	elif params[0] == "nextscene":
+		dialogue_handler.end_dialogue()
+		get_tree().change_scene_to_file(next_scene_path)
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
@@ -219,6 +240,9 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(showleftsprite)")
 		print("signal(showrightsprite)")
 		print("signal(setspeakername,-optional: \"charactername\")")
+		print("SOUND RELATED SIGNALS:")
+		print("signal(playsound,\"soundfilepath\")")
+		print("signal(stopsound)")
 
 func maximize_dialogue_size():
 	$text.custom_minimum_size.x = dialogue_width_maximized
