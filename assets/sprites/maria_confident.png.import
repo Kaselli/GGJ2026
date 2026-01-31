@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ef2cehutvm"
-path="res://.godot/imported/ggj_npc1_pose1.png-edceb185dbdfc1f0119e953ca17c178d.ctex"
+uid="uid://6ojm1fyko00j"
+path="res://.godot/imported/maria_confident.png-63333bf75cc7321d76495cf56c355dd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ggj_npc1_pose1.png"
-dest_files=["res://.godot/imported/ggj_npc1_pose1.png-edceb185dbdfc1f0119e953ca17c178d.ctex"]
+source_file="res://assets/sprites/maria_confident.png"
+dest_files=["res://.godot/imported/maria_confident.png-63333bf75cc7321d76495cf56c355dd6.ctex"]
 
 [params]
 

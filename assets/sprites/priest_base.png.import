@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgtkenla1i1wx"
-path="res://.godot/imported/ggj_npc3_pose1.png-664740b811d244818db81a619dfca274.ctex"
+uid="uid://cyuig2wg0t254"
+path="res://.godot/imported/priest_base.png-59cc091f08e9fd8ff4fa961902567b49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ggj_npc3_pose1.png"
-dest_files=["res://.godot/imported/ggj_npc3_pose1.png-664740b811d244818db81a619dfca274.ctex"]
+source_file="res://assets/sprites/priest_base.png"
+dest_files=["res://.godot/imported/priest_base.png-59cc091f08e9fd8ff4fa961902567b49.ctex"]
 
 [params]
 

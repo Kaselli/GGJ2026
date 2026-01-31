@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://ct3mld64mxh8w" path="res://scripts/utils/mask_popup.gd" id="1_mw25s"]
 [ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://addons/ez_dialogue/dialogue_resource/DialogueBox.gd" id="1_ycayy"]
+[ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="2_bw6k5"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://cg6u82ophs13c" path="res://scripts/sprites_handler/sprite_handler.gd" id="4_bw6k5"]
-[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="4_mw25s"]
-[ext_resource type="Texture2D" uid="uid://d3v8eynat77lb" path="res://icon.svg" id="5_y3j0m"]
+[ext_resource type="AudioStream" uid="uid://lc2g5t07qj3a" path="res://typing-sound-01-229863.mp3" id="5_tcjrq"]
 [ext_resource type="PackedScene" uid="uid://5oo0u215l715" path="res://scenes/utils/mask_slider.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://c7503r4l6h1c4" path="res://scripts/sprites_handler/character_name_handler.gd" id="7_kk2rg"]
 [ext_resource type="Script" uid="uid://dk3kld12buotc" path="res://scripts/utils/quit_ui.gd" id="8_b5spy"]
+[ext_resource type="Texture2D" uid="uid://dxmst6kr0a4r5" path="res://assets/sprites/burgerkong_base.png" id="8_rvs2r"]
+[ext_resource type="Texture2D" uid="uid://bo0prehh7nmoo" path="res://assets/sprites/maria_base.png" id="9_rvs2r"]
 [ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
 
 [node name="GameScene" type="Node2D" unique_id=2107874921]
@@ -38,7 +40,6 @@ theme_override_font_sizes/font_size = 36
 text = "Face of the 67"
 
 [node name="QuitUI" type="CenterContainer" parent="CanvasLayer" unique_id=734777501]
-visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,13 +65,20 @@ grow_horizontal = 2
 size_flags_vertical = 8
 alignment = 2
 script = ExtResource("1_ycayy")
-dialogue = ExtResource("4_mw25s")
+dialogue = ExtResource("2_bw6k5")
+typewriter_speed = 0.069
+pitch_scale = 0.05
 state = {
 "other_mask": 0,
 "self_mask_1": 0,
 "self_mask_2": 0
 }
 next_scene_path = "res://scenes/game_scene.tscn"
+
+[node name="TypewriterPlayer" type="AudioStreamPlayer" parent="CanvasLayer/DialogueBox" unique_id=1659435956]
+stream = ExtResource("5_tcjrq")
+pitch_scale = 0.75
+max_polyphony = 3
 
 [node name="text" type="RichTextLabel" parent="CanvasLayer/DialogueBox" unique_id=732094933]
 custom_minimum_size = Vector2(1350, 200)
@@ -97,15 +105,15 @@ script = ExtResource("4_bw6k5")
 
 [node name="LeftSprite" type="Sprite2D" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=295544699]
 z_index = -1
-position = Vector2(281.00003, -298.00003)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("5_y3j0m")
+position = Vector2(442, -56)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_rvs2r")
 
 [node name="RightSprite" type="Sprite2D" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=1405184148]
 z_index = 1
-position = Vector2(1561, 94)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("5_y3j0m")
+position = Vector2(1228, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_rvs2r")
 
 [node name="MaskSlider" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=267539981 instance=ExtResource("6_rurhu")]
 offset_left = 288.0
