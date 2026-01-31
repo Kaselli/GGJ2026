@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://6qtjo41llvrp" path="res://crpg_dialogue_demo/lzel_bg.jpg" id="1_df57v"]
 [ext_resource type="Script" uid="uid://cenwns5hxpv5w" path="res://crpg_dialogue_demo/RollBox.gd" id="2_gl5rf"]
-[ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://crpg_dialogue_demo/DialogueBox.gd" id="3_bwnhg"]
-[ext_resource type="JSON" path="res://crpg_dialogue_demo/sample_dialogue.json" id="4_3jik3"]
+[ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://addons/ez_dialogue/dialogue_resource/DialogueBox.gd" id="3_bwnhg"]
+[ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="4_3jik3"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="5_wktls"]
 
 [sub_resource type="Gradient" id="Gradient_d36n3"]

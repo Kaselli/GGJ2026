@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy3dxagvakhiy"]
+[gd_scene format=3 uid="uid://dy3dxagvakhiy"]
 
-[ext_resource type="Script" uid="uid://ddk1guohseox0" path="res://crpg_dialogue_demo/DialogueButton.gd" id="1_uhhm3"]
+[ext_resource type="Script" uid="uid://ddk1guohseox0" path="res://addons/ez_dialogue/dialogue_resource/DialogueButton.gd" id="1_uhhm3"]
 
-[node name="Button" type="Button"]
+[node name="Button" type="Button" unique_id=1028972798]
+custom_minimum_size = Vector2(1728, 0)
+text = "test text"
+autowrap_mode = 3
 script = ExtResource("1_uhhm3")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

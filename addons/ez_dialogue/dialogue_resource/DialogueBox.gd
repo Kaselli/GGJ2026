@@ -23,9 +23,12 @@ func clear_dialogue():
 	is_rolling = false
 	for child in get_children():
 		if child is Button:
-			child.hide()
+			button_cache.erase(child)
+			child.queue_free()
 
 func add_text(text: String):
+	$text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	#$text.add_theme_font_size_override("font_size", 24)
 	$text.text = text
 
 func add_choice(choice_text: String, id: int):
@@ -35,9 +38,11 @@ func add_choice(choice_text: String, id: int):
 		button_cache.push_back(new_button)
 		add_child(new_button)
 		new_button.dialogue_selected.connect(_on_choice_button_down)
+		new_button.custom_minimum_size.y = 40
 
 	var button = button_cache[id]
 	button.text = choice_text
+	button.add_theme_font_size_override("font_size", 24)
 	button.show()
 
 func _on_choice_button_down(choice_id: int):
@@ -53,6 +58,7 @@ func _on_ez_dialogue_dialogue_generated(response: DialogueResponse):
 	if response.choices.is_empty():
 		add_choice("[...]", 0)
 	else:
+		print("Adding choices: " + str(response.choices.size()))
 		for i in response.choices.size():
 			add_choice(response.choices[i], i)
 
