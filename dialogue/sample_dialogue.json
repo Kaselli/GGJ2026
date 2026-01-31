@@ -1,6 +1,6 @@
 [
 	{
-		"commands_raw": "\n?> Test long text in dialogue box and options -> test long text\n\n?> Increase lamb mask value by 1? -> lamb mask increase\n\n?> Decrease lamb mask value by 1? -> lamb mask decrease\n\n?> Check if lamb mask value is greater than 5 -> check lamb mask greater 5\n\n?> more options ->options2",
+		"commands_raw": "\n?> Test long text in dialogue box and options -> test long text\n\n?> Increase lamb mask value by 1? -> lamb mask increase\n\n?> Decrease lamb mask value by 1? -> lamb mask decrease\n\n?> Check if lamb mask value is greater than 5 -> check lamb mask greater 5\n\n?> Test popup -> test popup\n\n?> more options ->options2",
 		"gnode_name": "start",
 		"id": 0.0,
 		"name": "start",
@@ -90,13 +90,33 @@
 		]
 	},
 	{
-		"commands_raw": "?> Hide right sprite -> hide right sprite\n\n?> Show right sprite -> show right sprite\n\n?> Set speaker name to Protag -> speaker name set\n\n?> Unset speaker name -> speaker name unset\n\n?> back -> start",
+		"commands_raw": "?> Hide right sprite -> hide right sprite\n\n?> Show right sprite -> show right sprite\n\n?> Set speaker name to Protag -> speaker name set\n\n?> Unset speaker name -> speaker name unset\n\n?> Load scene -> scene load test\n\n?> back -> start",
 		"gnode_name": "options2",
 		"id": 11.0,
 		"name": "options2",
 		"position": [
 			720.0,
 			400.0
+		]
+	},
+	{
+		"commands_raw": "signal(nextscene)\n-> options2",
+		"gnode_name": "scene load test",
+		"id": 12.0,
+		"name": "scene load test",
+		"position": [
+			1280.0,
+			740.0
+		]
+	},
+	{
+		"commands_raw": "signal(maskpopup,67)\n->start",
+		"gnode_name": "test popup",
+		"id": 13.0,
+		"name": "test popup",
+		"position": [
+			140.0,
+			740.0
 		]
 	}
 ]
