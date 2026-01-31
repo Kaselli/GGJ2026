@@ -4,6 +4,7 @@ signal typewriter_finished(response: DialogueResponse)
 
 @export var dialogue: JSON
 @export var typewriter_speed: float = 0.04
+@export var pitch_scale: float = 0.1
 
 @onready var mask_slider = $SpriteHandler/MaskSlider
 @onready var mask_popup = $"../MaskPopup"
@@ -26,7 +27,6 @@ var current_response: DialogueResponse
 @onready var dialogue_handler: EzDialogue = $EzDialogue
 #@onready var roll_handler = $"../RollBox"
 @onready var sprites_handler = $SpriteHandler
-
 
 func _ready():
 	dialogue_finished = false
@@ -62,28 +62,60 @@ func add_text(response: DialogueResponse) -> void:
 	# Defer starting the typewriter effect so the node is inside the scene tree and get_tree() is valid.
 	call_deferred("_typewriter_effect", response)
 
+#func _typewriter_effect(response: DialogueResponse) -> void:
+#	current_response = response
+#	var text_content = response.text
+#	$text.text = text_content
+#	$text.visible_ratio = 0
+#	
+#	# Kill any existing tween to prevent overlapping effects
+#	if typewriter_tween:
+#		typewriter_tween.kill()
+#	
+#	typewriter_tween = create_tween()
+#	
+#	# Calculate duration based on text length and speed
+#	var duration = text_content.length() * typewriter_speed
+#	
+#	# Animate the visible_ratio from 0 to 1
+#	typewriter_tween.tween_property($text, "visible_ratio", 1.0, duration)
+#	
+#	# Connect the finished signal
+#	typewriter_tween.finished.connect(func():
+#		typewriter_finished.emit(response)
+#	)
+
 func _typewriter_effect(response: DialogueResponse) -> void:
 	current_response = response
 	var text_content = response.text
 	$text.text = text_content
 	$text.visible_ratio = 0
 	
-	# Kill any existing tween to prevent overlapping effects
 	if typewriter_tween:
 		typewriter_tween.kill()
 	
 	typewriter_tween = create_tween()
-	
-	# Calculate duration based on text length and speed
 	var duration = text_content.length() * typewriter_speed
 	
-	# Animate the visible_ratio from 0 to 1
-	typewriter_tween.tween_property($text, "visible_ratio", 1.0, duration)
+	# Use tween_method to call _on_typewriter_step repeatedly
+	typewriter_tween.tween_method(_on_typewriter_step, 0.0, 1.0, duration)
 	
-	# Connect the finished signal
 	typewriter_tween.finished.connect(func():
 		typewriter_finished.emit(response)
 	)
+
+func _on_typewriter_step(ratio: float) -> void:
+	# Check if we've actually moved forward enough to show a new character
+	var old_visible_chars = $text.visible_characters
+	$text.visible_ratio = ratio
+		
+	# If the number of visible characters increased, play the sound
+	if $text.visible_characters > old_visible_chars:
+		# Avoid playing sound for spaces to make it feel more natural
+		var last_char = $text.text[$text.visible_characters - 1]
+		if last_char != " ":
+			$TypewriterPlayer.pitch_scale = randf_range(1 - pitch_scale, 1 + pitch_scale)
+			$TypewriterPlayer.play()
 
 func skip_typewriter() -> void:
 	if typewriter_tween and typewriter_tween.is_running():
@@ -268,6 +300,18 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		%SFXAudioStreamPlayer.stop()
 		if %SFXAudioStreamPlayer.stream != null:
 			%SFXAudioStreamPlayer.stream = null
+	elif params[0] == "settypewritersfx":
+		if params.size() < 2:
+			print("[settypewritersfx] Warning: No sound file specified.")
+			return
+		if not ResourceLoader.exists(params[1]):
+			print("[settypewritersfx] Warning: Sound file " + params[1] + " does not exist.")
+			return
+		var new_stream = load(params[1])
+		if new_stream is AudioStream:
+			$TypewriterPlayer.stream = new_stream
+		else:
+			print("[settypewritersfx] Warning: Loaded resource is not an AudioStream.")
 
 	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "nextscene":
@@ -296,6 +340,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("SOUND RELATED SIGNALS:")
 		print("signal(playsound,\"soundfilepath\")")
 		print("signal(stopsound)")
+		print("signal(settypewritersfx,\"soundfilepath\")")
 		print("SCENE MANAGEMENT RELATED SIGNALS:")
 		print("signal(nextscene)")
 

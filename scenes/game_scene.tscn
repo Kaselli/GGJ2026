@@ -5,6 +5,7 @@
 [ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="2_bw6k5"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://cg6u82ophs13c" path="res://scripts/sprites_handler/sprite_handler.gd" id="4_bw6k5"]
+[ext_resource type="AudioStream" uid="uid://lc2g5t07qj3a" path="res://typing-sound-01-229863.mp3" id="5_tcjrq"]
 [ext_resource type="Texture2D" uid="uid://d3v8eynat77lb" path="res://icon.svg" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://5oo0u215l715" path="res://scenes/utils/mask_slider.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://c7503r4l6h1c4" path="res://scripts/sprites_handler/character_name_handler.gd" id="7_kk2rg"]
@@ -64,12 +65,19 @@ size_flags_vertical = 8
 alignment = 2
 script = ExtResource("1_ycayy")
 dialogue = ExtResource("2_bw6k5")
+typewriter_speed = 0.069
+pitch_scale = 0.05
 state = {
 "other_mask": 0,
 "self_mask_1": 0,
 "self_mask_2": 0
 }
 next_scene_path = "res://scenes/game_scene.tscn"
+
+[node name="TypewriterPlayer" type="AudioStreamPlayer" parent="CanvasLayer/DialogueBox" unique_id=1659435956]
+stream = ExtResource("5_tcjrq")
+pitch_scale = 0.75
+max_polyphony = 3
 
 [node name="text" type="RichTextLabel" parent="CanvasLayer/DialogueBox" unique_id=732094933]
 custom_minimum_size = Vector2(1350, 200)
