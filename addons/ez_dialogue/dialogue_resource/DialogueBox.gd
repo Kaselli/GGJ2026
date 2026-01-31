@@ -4,7 +4,8 @@ signal state_changed(state_name: String, new_value: int)
 @export var dialogue: JSON
 
 @onready var mask_slider = $SpriteHandler/MaskSlider
-@onready var dialogue_choice_res = preload("res://crpg_dialogue_demo/DialogueButton.tscn")
+@onready var character_name_handler = $CharacterNameHandler
+@onready var dialogue_choice_res = preload("res://addons/ez_dialogue/main_screen/DialogueButton.tscn")
 
 @export var state: Dictionary = {}
 @export var other_mask_max_value: int = 6
@@ -25,7 +26,8 @@ var button_cache: Array[DialogueButton] = []
 func _ready():
 	dialogue_finished = false
 	dialogue_handler.start_dialogue(dialogue, state)
-	mask_slider.init_slider(other_mask_max_value) 
+	mask_slider.init_slider(other_mask_max_value)
+	character_name_handler.hide_speaking_character_name_ui()
 
 func clear_dialogue():
 	$text.text = ""
@@ -164,7 +166,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		else:
 			print("[highestparam] Warning: Either No integer parameters found in state dictionary or no states in it at all.")
 
-	########################### VISUAL PARAMETERS SIGNALS HANDLED IN THIS SECTION ###########################
+	########################### VISUAL AND CHATBOX PARAMETERS SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "changesprites":
 			var left_character_name: String = params[1]
 			var left_character_expression: String = params[2]
@@ -191,6 +193,12 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	elif params[0] == "showrightsprite":
 		minimize_dialogue_size()
 		sprites_handler.show_right_sprite()
+	elif params[0] == "setspeakername":
+		if params.size() < 2:
+			character_name_handler.hide_speaking_character_name_ui()
+		else:
+			var character_name: String = params[1]
+			character_name_handler.set_speaking_character_name(character_name)
 	
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
@@ -210,6 +218,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(showsprites)")
 		print("signal(showleftsprite)")
 		print("signal(showrightsprite)")
+		print("signal(setspeakername,-optional: \"charactername\")")
 
 func maximize_dialogue_size():
 	$text.custom_minimum_size.x = dialogue_width_maximized
@@ -220,3 +229,4 @@ func minimize_dialogue_size():
 	$text.custom_minimum_size.x = dialogue_width_minimized
 	for button in button_cache:
 		button.custom_minimum_size.x = dialogue_width_minimized
+
