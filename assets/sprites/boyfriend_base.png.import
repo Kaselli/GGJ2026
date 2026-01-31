@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djjt7jbrtjfnm"
-path="res://.godot/imported/ggj_npc2_pose1.png-beab42de80eef1f9eab1f3b7b6efd099.ctex"
+uid="uid://cx3yywgburp4q"
+path="res://.godot/imported/boyfriend_base.png-d628c44e05f85673466b97342501b41d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ggj_npc2_pose1.png"
-dest_files=["res://.godot/imported/ggj_npc2_pose1.png-beab42de80eef1f9eab1f3b7b6efd099.ctex"]
+source_file="res://assets/sprites/boyfriend_base.png"
+dest_files=["res://.godot/imported/boyfriend_base.png-d628c44e05f85673466b97342501b41d.ctex"]
 
 [params]
 
