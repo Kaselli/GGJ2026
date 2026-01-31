@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ltubbbjuqn4u"]
 
+[ext_resource type="Script" uid="uid://ct3mld64mxh8w" path="res://scripts/utils/mask_popup.gd" id="1_mw25s"]
 [ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://addons/ez_dialogue/dialogue_resource/DialogueBox.gd" id="1_ycayy"]
 [ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="2_bw6k5"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_y3j0m"]
@@ -17,7 +18,30 @@ font_size = 24
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=509706036]
 
+[node name="MaskPopup" type="AspectRatioContainer" parent="CanvasLayer" unique_id=1461526531]
+z_index = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -20.0
+offset_right = 54.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mw25s")
+
+[node name="PopupBG" type="Sprite2D" parent="CanvasLayer/MaskPopup" unique_id=2830424]
+
+[node name="MaskText" type="Label" parent="CanvasLayer/MaskPopup" unique_id=547561097]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Face of the 67"
+
 [node name="QuitUI" type="CenterContainer" parent="CanvasLayer" unique_id=734777501]
+visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0

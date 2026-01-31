@@ -1,9 +1,12 @@
 extends VBoxContainer
 signal state_changed(state_name: String, new_value: int)
+signal typewriter_finished(response: DialogueResponse)
 
 @export var dialogue: JSON
+@export var typewriter_speed: float = 0.04
 
 @onready var mask_slider = $SpriteHandler/MaskSlider
+@onready var mask_popup = $"../MaskPopup"
 @onready var character_name_handler = $CharacterNameHandler
 @onready var dialogue_choice_res = preload("res://addons/ez_dialogue/main_screen/DialogueButton.tscn")
 
@@ -16,7 +19,6 @@ signal state_changed(state_name: String, new_value: int)
 @export var next_scene_path: String = ""
 
 var dialogue_finished = false
-var is_rolling = false
 
 var button_cache: Array[DialogueButton] = []
 
@@ -30,20 +32,50 @@ func _ready():
 	dialogue_handler.start_dialogue(dialogue, state)
 	mask_slider.init_slider(other_mask_max_value)
 	character_name_handler.hide_speaking_character_name_ui()
+	typewriter_finished.connect(_on_typewriter_finished)
+
+func _on_typewriter_finished(response: DialogueResponse):
+	print("Typewriter finished for text: " + response.text)
+	if response.choices.is_empty():
+		add_choice("[...]", 0)
+	else:
+		for i in response.choices.size():
+			add_choice(response.choices[i], i)
+
+
 
 func clear_dialogue():
 	$text.text = ""
-	is_rolling = false
 	for child in get_children():
 		if child is Button:
 			#button_cache.erase(child)
 			#child.queue_free()
 			child.hide()
 
-func add_text(text: String):
+func add_text(response: DialogueResponse) -> void:
+	var text = response.text
 	$text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	#$text.add_theme_font_size_override("font_size", 24)
-	$text.text = text
+	await get_tree().create_tween().tween_callback(func(): _typewriter_effect(response))
+
+func _typewriter_effect(response: DialogueResponse) -> void:
+	var text = response.text
+	$text.text = ""
+	var char_index: int = 0
+	var total_length: int = text.length()
+
+	var last_character
+	while char_index < total_length:
+		$text.text += text[char_index]
+		char_index += 1
+		if char_index == total_length - 1:
+			get_tree().create_timer(typewriter_speed).timeout.connect(func():
+				typewriter_finished.emit(response)
+			)
+		else:
+			await get_tree().create_timer(typewriter_speed).timeout
+	
+	if total_length == 0:
+		typewriter_finished.emit(response)
 
 func add_choice(choice_text: String, id: int):
 	if button_cache.size() < id + 1:
@@ -65,15 +97,7 @@ func _on_choice_button_down(choice_id: int):
 		dialogue_handler.next(choice_id)
 
 func _on_ez_dialogue_dialogue_generated(response: DialogueResponse):
-	if is_rolling:
-		return
-
-	add_text(response.text)
-	if response.choices.is_empty():
-		add_choice("[...]", 0)
-	else:
-		for i in response.choices.size():
-			add_choice(response.choices[i], i)
+	add_text(response)
 
 func _on_ez_dialogue_end_of_dialogue_reached():
 	dialogue_finished = true
@@ -207,6 +231,13 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		else:
 			var character_name: String = params[1]
 			character_name_handler.set_speaking_character_name(character_name)	
+	elif params[0] == "maskpopup":
+		if params.size() < 2 or not params[1].is_valid_int():
+			print("[maskpopup] Warning: Invalid mask value parameter.")
+			return
+		var mask: String = params[1]
+		mask_popup.display(mask)
+
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
 		if params.size() < 2:
