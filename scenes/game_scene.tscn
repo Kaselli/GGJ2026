@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://5oo0u215l715" path="res://scenes/utils/mask_slider.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://c7503r4l6h1c4" path="res://scripts/sprites_handler/character_name_handler.gd" id="7_kk2rg"]
 [ext_resource type="Script" uid="uid://dk3kld12buotc" path="res://scripts/utils/quit_ui.gd" id="8_b5spy"]
+[ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ycayy"]
 font_size = 24
 
-[node name="GameScene_Dialogue" type="Node2D" unique_id=2107874921]
+[node name="GameScene" type="Node2D" unique_id=2107874921]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=509706036]
 
@@ -102,6 +103,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Hold ESCAPE to quit the game"
 horizontal_alignment = 1
+
+[node name="BGMAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1162745885]
+stream = ExtResource("9_utbpp")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=621210558]
+volume_db = -25.0
+autoplay = true
 
 [connection signal="custom_signal_received" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_custom_signal_received"]
 [connection signal="dialogue_generated" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_dialogue_generated"]
