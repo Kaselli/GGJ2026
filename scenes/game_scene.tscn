@@ -38,7 +38,6 @@ theme_override_font_sizes/font_size = 36
 text = "Face of the 67"
 
 [node name="QuitUI" type="CenterContainer" parent="CanvasLayer" unique_id=734777501]
-visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
