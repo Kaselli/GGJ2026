@@ -7,6 +7,7 @@ signal state_changed(state_name: String, new_value: int)
 @onready var dialogue_choice_res = preload("res://crpg_dialogue_demo/DialogueButton.tscn")
 
 @export var state: Dictionary = {}
+@export var other_mask_max_value: int = 6
 
 @export var dialogue_width_minimized: float = 1350.0
 @export var dialogue_width_maximized: float = 1728.0
@@ -24,6 +25,7 @@ var button_cache: Array[DialogueButton] = []
 func _ready():
 	dialogue_finished = false
 	dialogue_handler.start_dialogue(dialogue, state)
+	mask_slider.init_slider(other_mask_max_value) 
 
 func clear_dialogue():
 	$text.text = ""
