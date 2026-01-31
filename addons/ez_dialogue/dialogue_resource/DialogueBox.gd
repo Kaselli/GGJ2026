@@ -225,7 +225,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 
 	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "nextscene":
-		dialogue_handler.end_dialogue()
+		# dialogue_handler.end_dialogue()
 		get_tree().change_scene_to_file(next_scene_path)
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
@@ -262,4 +262,3 @@ func minimize_dialogue_size():
 	$text.custom_minimum_size.x = dialogue_width_minimized
 	for button in button_cache:
 		button.custom_minimum_size.x = dialogue_width_minimized
-

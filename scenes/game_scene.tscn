@@ -49,6 +49,7 @@ state = {
 "self_mask_1": 0,
 "self_mask_2": 0
 }
+next_scene_path = "res://scenes/game_scene.tscn"
 
 [node name="text" type="Label" parent="CanvasLayer/DialogueBox" unique_id=815811077]
 clip_contents = true
