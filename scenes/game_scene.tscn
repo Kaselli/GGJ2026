@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ct3mld64mxh8w" path="res://scripts/utils/mask_popup.gd" id="1_mw25s"]
 [ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://addons/ez_dialogue/dialogue_resource/DialogueBox.gd" id="1_ycayy"]
-[ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="2_bw6k5"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://cg6u82ophs13c" path="res://scripts/sprites_handler/sprite_handler.gd" id="4_bw6k5"]
+[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="4_mw25s"]
 [ext_resource type="Texture2D" uid="uid://d3v8eynat77lb" path="res://icon.svg" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://5oo0u215l715" path="res://scenes/utils/mask_slider.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://c7503r4l6h1c4" path="res://scripts/sprites_handler/character_name_handler.gd" id="7_kk2rg"]
@@ -64,7 +64,7 @@ grow_horizontal = 2
 size_flags_vertical = 8
 alignment = 2
 script = ExtResource("1_ycayy")
-dialogue = ExtResource("2_bw6k5")
+dialogue = ExtResource("4_mw25s")
 state = {
 "other_mask": 0,
 "self_mask_1": 0,

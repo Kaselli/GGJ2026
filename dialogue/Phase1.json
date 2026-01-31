@@ -1,0 +1,92 @@
+[
+	{
+		"commands_raw": "signal(setspeakername,Maria Garter)\n[i]I didn't think someone as big as ComptaCorp would ask for my help...\nThis might be a bit harder than dealing with small businesses.[/i]\n?> ->Intro 1",
+		"gnode_name": "start",
+		"id": 0.0,
+		"name": "start",
+		"position": [
+			340.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Maria Garter)\n[i]Is this girl the financial manager's trainee or something?\nShe looks lost.[/i]\n?> ->Intro 2",
+		"gnode_name": "intro 1",
+		"id": 1.0,
+		"name": "Intro 1",
+		"position": [
+			440.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Maria Garter)\nGood morning! I'm Miss Garter: Potential Energy management plan consultant.\nI was supposed to meet with a ComptaCorp representative, to discuss a resource management strategy.\n?> ->Intro 3",
+		"gnode_name": "intro 2",
+		"id": 2.0,
+		"name": "Intro 2",
+		"position": [
+			580.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Client)\nH-hello! Yes, that would be me.\n?> ->Assessment 1",
+		"gnode_name": "intro 3",
+		"id": 3.0,
+		"name": "Intro 3",
+		"position": [
+			720.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Maria Garter)\n[i]Insecure rookie. Simple enough.[/i]\n?> ->Assessment 2",
+		"gnode_name": "assessment 1",
+		"id": 4.0,
+		"name": "Assessment 1",
+		"position": [
+			880.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Maria Garter)\nI'm sure you have no time to waste, so let's get to business, shall we?\nWhat are the companies current issues?\n?> ->Assessment 3",
+		"gnode_name": "assessment 2",
+		"id": 5.0,
+		"name": "Assessment 2",
+		"position": [
+			1040.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Client)\nWell, the company's latest financial report is... worse than usual.\nMy supervisors tasked me with finding a better resource management strategy.\n?> ->Assessment 4",
+		"gnode_name": "assessment 3",
+		"id": 6.0,
+		"name": "Assessment 3",
+		"position": [
+			1200.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Maria Garter)\nI see:\n?> Do you know where to start?->Assessment 5\n?> Any idea what might have caused this?->Assessment 5",
+		"gnode_name": "assessment 4",
+		"id": 7.0,
+		"name": "Assessment 4",
+		"position": [
+			1360.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "asrsdkjl",
+		"gnode_name": "assessment 5",
+		"id": 8.0,
+		"name": "Assessment 5",
+		"position": [
+			1520.0,
+			60.0
+		]
+	}
+]
