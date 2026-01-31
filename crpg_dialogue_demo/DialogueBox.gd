@@ -156,7 +156,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			var left_character: String = left_character_name + "_" + left_character_expression
 			var right_character: String = right_character_name + "_" + right_character_expression
 			
-			sprites_handler.change_characters_visual(left_character, right_character)
+			print("[changesprites] Not implemented yet.")
+			#sprites_handler.change_characters_visual(left_character, right_character)
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
@@ -168,6 +169,6 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(checkparam,\"<|>|<=|>=|==|!=\",\"paramname\",value) => comparison_result")
 		print("signal(highestparam) => highest_param")
 		print("VISUAL SIGNALS:")
-		print("signal(changesprites,\"leftcharactername\",\"leftcharacterexpression\",\"rightcharactername\",\"rightcharacterexpression\")")
+		print("WIP: signal(changesprites,\"leftcharactername\",\"leftcharacterexpression\",\"rightcharactername\",\"rightcharacterexpression\")")
 		
 		
