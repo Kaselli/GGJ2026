@@ -42,8 +42,6 @@ func _on_typewriter_finished(response: DialogueResponse):
 		for i in response.choices.size():
 			add_choice(response.choices[i], i)
 
-
-
 func clear_dialogue():
 	$text.text = ""
 	for child in get_children():
@@ -55,7 +53,8 @@ func clear_dialogue():
 func add_text(response: DialogueResponse) -> void:
 	var text = response.text
 	$text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	await get_tree().create_tween().tween_callback(func(): _typewriter_effect(response))
+	# Defer starting the typewriter effect so the node is inside the scene tree and get_tree() is valid.
+	call_deferred("_typewriter_effect", response)
 
 func _typewriter_effect(response: DialogueResponse) -> void:
 	var text = response.text
