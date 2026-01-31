@@ -1,1 +1,122 @@
-[{"commands_raw":"\n?> Test long text in dialogue box and options -> test long text\n\n?> Increase lamb mask value by 1? -> lamb mask increase\n\n?> Decrease lamb mask value by 1? -> lamb mask decrease\n\n?> Check if lamb mask value is greater than 5 -> check lamb mask greater 5\n\n?> Test popup -> test popup\n\n?> more options ->options2","gnode_name":"start","id":0,"name":"start","position":[-260.0,380.0]},{"commands_raw":"Increasing stat by 1\nsignal(changeparam,other_mask,1)\nLamb mask: ${other_mask}\n?> back to start -> start","gnode_name":"lamb mask increase","id":1,"name":"lamb mask increase","position":[100.0,120.0]},{"commands_raw":"Decreasing stat by 1\nsignal(changeparam,other_mask,-1)\nLamb mask: ${other_mask}\n?> back to start -> start","gnode_name":"lamb mask decrease","id":2,"name":"lamb mask decrease","position":[80.0,280.0]},{"commands_raw":"signal(checkparam,>,other_mask,5)\nComparison result: ${comparison_result}\nif there's nothing above it means false, false is not displayed because it's false...\n?> back to start -> start","gnode_name":"check lamb mask greater 5","id":4,"name":"check lamb mask greater 5","position":[80.0,500.0]},{"commands_raw":"Lorem ipsum dolor sit amet. Et mollitia eaque vel reiciendis molestiae non internos eveniet. Eos cupiditate officia non provident quaerat aut ipsam sint vel tempora praesentium. In alias quia qui consequatur dolores nam illo magni est excepturi galisum. Eum autem architecto sit consequatur aliquid et nulla doloremque. Lorem ipsum dolor sit amet. Et mollitia eaque vel reiciendis molestiae non internos eveniet. Eos cupiditate officia non provident quaerat aut ipsam sint vel tempora praesentium. In alias quia qui consequatur dolores nam illo magni est excepturi galisum. Eum autem architecto sit consequatur aliquid et nulla doloremque.\n?> Lorem ipsum dolor sit amet. Et mollitia eaque vel reiciendis molestiae non internos eveniet. Eos cupiditate officia non provident quaerat aut ipsam sint vel tempora praesentium. In alias quia qui consequatur dolores nam illo magni est excepturi galisum. Eum autem architecto sit consequatur aliquid et nulla doloremque.-> start","gnode_name":"test long text","id":5,"name":"test long text","position":[140.0,600.0]},{"commands_raw":"signal(hiderightsprite)\n?> back -> options2","gnode_name":"hide right sprite","id":6,"name":"hide right sprite","position":[1300.0,140.0]},{"commands_raw":"signal(showrightsprite)\n?> back -> options2","gnode_name":"show right sprite","id":7,"name":"show right sprite","position":[1260.0,300.0]},{"commands_raw":"signal(setspeakername,protag)\n?> back -> options2","gnode_name":"speaker name set","id":8,"name":"speaker name set","position":[1240.0,500.0]},{"commands_raw":"signal(setspeakername)\n?> back -> options2","gnode_name":"speaker name unset","id":9,"name":"speaker name unset","position":[1260.0,620.0]},{"commands_raw":"?> Hide right sprite -> hide right sprite\n\n?> Show right sprite -> show right sprite\n\n?> Set speaker name to Protag -> speaker name set\n\n?> Unset speaker name -> speaker name unset\n\n?> Load scene -> scene load test\n\n?> back -> start","gnode_name":"options2","id":11,"name":"options2","position":[720.0,400.0]},{"commands_raw":"signal(nextscene)\n-> options2","gnode_name":"scene load test","id":12,"name":"scene load test","position":[1280.0,740.0]},{"commands_raw":"signal(maskpopup,67)\n->start","gnode_name":"test popup","id":13,"name":"test popup","position":[140.0,740.0]}]
+[
+	{
+		"commands_raw": "\n?> Test long text in dialogue box and options -> test long text\n\n?> Increase lamb mask value by 1? -> lamb mask increase\n\n?> Decrease lamb mask value by 1? -> lamb mask decrease\n\n?> Check if lamb mask value is greater than 5 -> check lamb mask greater 5\n\n?> Test popup -> test popup\n\n?> more options ->options2",
+		"gnode_name": "start",
+		"id": 0.0,
+		"name": "start",
+		"position": [
+			-260.0,
+			380.0
+		]
+	},
+	{
+		"commands_raw": "Increasing stat by 1\nsignal(changeparam,other_mask,1)\nLamb mask: ${other_mask}\n?> back to start -> start",
+		"gnode_name": "lamb mask increase",
+		"id": 1.0,
+		"name": "lamb mask increase",
+		"position": [
+			100.0,
+			120.0
+		]
+	},
+	{
+		"commands_raw": "Decreasing stat by 1\nsignal(changeparam,other_mask,-1)\nLamb mask: ${other_mask}\n?> back to start -> start",
+		"gnode_name": "lamb mask decrease",
+		"id": 2.0,
+		"name": "lamb mask decrease",
+		"position": [
+			80.0,
+			280.0
+		]
+	},
+	{
+		"commands_raw": "signal(checkparam,>,other_mask,5)\nComparison result: ${comparison_result}\nif there's nothing above it means false, false is not displayed because it's false...\n?> back to start -> start",
+		"gnode_name": "check lamb mask greater 5",
+		"id": 4.0,
+		"name": "check lamb mask greater 5",
+		"position": [
+			80.0,
+			500.0
+		]
+	},
+	{
+		"commands_raw": "Lorem ipsum dolor sit amet. Et mollitia eaque vel reiciendis molestiae non internos eveniet. Eos cupiditate officia non provident quaerat aut ipsam sint vel tempora praesentium. In alias quia qui consequatur dolores nam illo magni est excepturi galisum. Eum autem architecto sit consequatur aliquid et nulla doloremque. Lorem ipsum dolor sit amet. Et mollitia eaque vel reiciendis molestiae non internos eveniet. Eos cupiditate officia non provident quaerat aut ipsam sint vel tempora praesentium. In alias quia qui consequatur dolores nam illo magni est excepturi galisum. Eum autem architecto sit consequatur aliquid et nulla doloremque.\n?> Lorem ipsum dolor sit amet. Et mollitia eaque vel reiciendis molestiae non internos eveniet. Eos cupiditate officia non provident quaerat aut ipsam sint vel tempora praesentium. In alias quia qui consequatur dolores nam illo magni est excepturi galisum. Eum autem architecto sit consequatur aliquid et nulla doloremque.-> start",
+		"gnode_name": "test long text",
+		"id": 5.0,
+		"name": "test long text",
+		"position": [
+			140.0,
+			600.0
+		]
+	},
+	{
+		"commands_raw": "signal(hiderightsprite)\n?> back -> options2",
+		"gnode_name": "hide right sprite",
+		"id": 6.0,
+		"name": "hide right sprite",
+		"position": [
+			1300.0,
+			140.0
+		]
+	},
+	{
+		"commands_raw": "signal(showrightsprite)\n?> back -> options2",
+		"gnode_name": "show right sprite",
+		"id": 7.0,
+		"name": "show right sprite",
+		"position": [
+			1260.0,
+			300.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,protag)\n?> back -> options2",
+		"gnode_name": "speaker name set",
+		"id": 8.0,
+		"name": "speaker name set",
+		"position": [
+			1240.0,
+			500.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername)\n?> back -> options2",
+		"gnode_name": "speaker name unset",
+		"id": 9.0,
+		"name": "speaker name unset",
+		"position": [
+			1260.0,
+			620.0
+		]
+	},
+	{
+		"commands_raw": "?> Hide right sprite -> hide right sprite\n\n?> Show right sprite -> show right sprite\n\n?> Set speaker name to Protag -> speaker name set\n\n?> Unset speaker name -> speaker name unset\n\n?> Load scene -> scene load test\n\n?> back -> start",
+		"gnode_name": "options2",
+		"id": 11.0,
+		"name": "options2",
+		"position": [
+			720.0,
+			400.0
+		]
+	},
+	{
+		"commands_raw": "signal(nextscene)\n-> options2",
+		"gnode_name": "scene load test",
+		"id": 12.0,
+		"name": "scene load test",
+		"position": [
+			1280.0,
+			740.0
+		]
+	},
+	{
+		"commands_raw": "signal(maskpopup,67)\n->start",
+		"gnode_name": "test popup",
+		"id": 13.0,
+		"name": "test popup",
+		"position": [
+			140.0,
+			740.0
+		]
+	}
+]

@@ -11,9 +11,6 @@
 [ext_resource type="Script" uid="uid://dk3kld12buotc" path="res://scripts/utils/quit_ui.gd" id="8_b5spy"]
 [ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ycayy"]
-font_size = 24
-
 [node name="GameScene" type="Node2D" unique_id=2107874921]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=509706036]
@@ -75,19 +72,21 @@ state = {
 }
 next_scene_path = "res://scenes/game_scene.tscn"
 
-[node name="text" type="Label" parent="CanvasLayer/DialogueBox" unique_id=815811077]
-clip_contents = true
+[node name="text" type="RichTextLabel" parent="CanvasLayer/DialogueBox" unique_id=732094933]
 custom_minimum_size = Vector2(1350, 200)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
-text = "testsetset
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "[i]testsetset
 asdfsdfasdfasdfasdf
 asdfasdfasdfdasdfasdf
-asdfasdf"
-label_settings = SubResource("LabelSettings_ycayy")
-autowrap_mode = 3
-clip_text = true
+asdfasdf[/i]"
 
 [node name="EzDialogue" type="Node" parent="CanvasLayer/DialogueBox" unique_id=540485955]
 script = ExtResource("3_y3j0m")
