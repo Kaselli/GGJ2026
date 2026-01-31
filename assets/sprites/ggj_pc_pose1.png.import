@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6qtjo41llvrp"
-path="res://.godot/imported/lzel_bg.jpg-5df846521f0f81ce396f4345eda33352.ctex"
+uid="uid://cr3tfj46sviwp"
+path="res://.godot/imported/ggj_pc_pose1.png-0ff543d27d4c3cb758cc97519c513add.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://crpg_dialogue_demo/lzel_bg.jpg"
-dest_files=["res://.godot/imported/lzel_bg.jpg-5df846521f0f81ce396f4345eda33352.ctex"]
+source_file="res://assets/sprites/ggj_pc_pose1.png"
+dest_files=["res://.godot/imported/ggj_pc_pose1.png-0ff543d27d4c3cb758cc97519c513add.ctex"]
 
 [params]
 

@@ -1,1 +1,1 @@
--
+-work on game progression, what happens on changing scene. -> just make 3 preset scenes?

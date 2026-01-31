@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d3v8eynat77lb" path="res://icon.svg" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://5oo0u215l715" path="res://scenes/utils/mask_slider.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://c7503r4l6h1c4" path="res://scripts/sprites_handler/character_name_handler.gd" id="7_kk2rg"]
+[ext_resource type="Script" uid="uid://dk3kld12buotc" path="res://scripts/utils/quit_ui.gd" id="8_b5spy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ycayy"]
 font_size = 24
@@ -87,6 +88,20 @@ offset_bottom = 17.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 text = "Character Name"
+
+[node name="QuitUI" type="CenterContainer" parent="CanvasLayer" unique_id=734777501]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_b5spy")
+
+[node name="QuitLabel" type="Label" parent="CanvasLayer/QuitUI" unique_id=1097174254]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Hold ESCAPE to quit the game"
+horizontal_alignment = 1
 
 [connection signal="custom_signal_received" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_custom_signal_received"]
 [connection signal="dialogue_generated" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_dialogue_generated"]
