@@ -4,18 +4,31 @@ extends Node
 @onready var left_sprite = $LeftSprite
 @onready var right_sprite = $RightSprite
 
-func change_characters_visual(left_character: String, right_character: String) -> void:
+func change_left_character_visual(left_character: String) -> void:
 	if left_character != "":
-		left_sprite.texture = load("res://sprites/" + left_character + ".png")
-		left_sprite.show()
+		var left_sprite_loaded = load("res://sprites/" + left_character + ".png")
+		if left_sprite_loaded == null:
+			print("Error: Could not load left character sprite: " + left_character)
+			hide_left_sprite()
+		else:
+			left_sprite.texture = left_sprite_loaded
+			show_left_sprite()
 	else:
-		left_sprite.hide()
-	
+		print("Error: Left character string is empty.")
+		hide_left_sprite()
+
+func change_right_character_visual(right_character: String) -> void:
 	if right_character != "":
-		right_sprite.texture = load("res://sprites/" + right_character + ".png")
-		right_sprite.show()
+		var right_sprite_loaded = load("res://sprites/" + right_character + ".png")
+		if right_sprite_loaded == null:
+			print("Error: Could not load right character sprite: " + right_character)
+			hide_right_sprite()
+		else:
+			right_sprite.texture = right_sprite_loaded
+			show_right_sprite()
 	else:
-		right_sprite.hide()
+		print("Error: Right character string is empty.")
+		hide_right_sprite()
 
 func hide_all_sprites() -> void:
 	left_sprite.hide()

@@ -169,16 +169,22 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			print("[highestparam] Warning: Either No integer parameters found in state dictionary or no states in it at all.")
 
 	########################### VISUAL AND CHATBOX SIGNALS HANDLED IN THIS SECTION ###########################
-	elif params[0] == "changesprites":
-			var left_character_name: String = params[1]
-			var left_character_expression: String = params[2]
-			var right_character_name: String = params[3]
-			var right_character_expression: String = params[4]
-			var left_character: String = left_character_name + "_" + left_character_expression
-			var right_character: String = right_character_name + "_" + right_character_expression
-			
-			print("[changesprites] Not implemented yet.")
-			sprites_handler.change_characters_visual(left_character, right_character)
+	elif params[0] == "changeleftsprite":
+		if params.size() < 3:
+			print("[changeleftsprite] Warning: Invalid parameters.")
+			return
+		var left_character_name: String = params[1]
+		var left_character_expression: String = params[2]
+		var left_character: String = left_character_name + "_" + left_character_expression
+		sprites_handler.change_left_character_visual(left_character)
+	elif params[0] == "changerightsprite":
+		if params.size() < 3:
+			print("[changerightsprite] Warning: Invalid parameters.")
+			return
+		var right_character_name: String = params[1]
+		var right_character_expression: String = params[2]
+		var right_character: String = right_character_name + "_" + right_character_expression
+		sprites_handler.change_right_character_visual(right_character)
 	elif params[0] == "hidesprites":
 		maximize_dialogue_size()
 		sprites_handler.hide_all_sprites()
@@ -232,7 +238,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(checkparam,\"<|>|<=|>=|==|!=\",\"paramname\",value) => comparison_result")
 		print("signal(highestparam) => highest_param")
 		print("VISUAL RELATED SIGNALS:")
-		print("signal(changesprites,\"leftcharactername\",\"leftcharacterexpression\",\"rightcharactername\",\"rightcharacterexpression\")")
+		print("signal(changeleftsprite,\"leftcharactername\",\"leftcharacterexpression\")")
+		print("signal(changerightsprite,\"rightcharactername\",\"rightcharacterexpression\")")
 		print("signal(hidesprites)")
 		print("signal(hideleftsprite)")
 		print("signal(hiderightsprite)")
@@ -243,6 +250,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("SOUND RELATED SIGNALS:")
 		print("signal(playsound,\"soundfilepath\")")
 		print("signal(stopsound)")
+		print("SCENE MANAGEMENT RELATED SIGNALS:")
+		print("signal(nextscene)")
 
 func maximize_dialogue_size():
 	$text.custom_minimum_size.x = dialogue_width_maximized
