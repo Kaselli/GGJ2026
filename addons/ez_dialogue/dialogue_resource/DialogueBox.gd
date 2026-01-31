@@ -5,6 +5,10 @@ extends VBoxContainer
 @onready var dialogue_choice_res = preload("res://crpg_dialogue_demo/DialogueButton.tscn")
 
 @export var state: Dictionary = {}
+
+@export var dialogue_width_minimized: float = 1350.0
+@export var dialogue_width_maximized: float = 1728.0
+
 var dialogue_finished = false
 var is_rolling = false
 
@@ -13,6 +17,7 @@ var button_cache: Array[DialogueButton] = []
 @onready var dialogue_handler: EzDialogue = $EzDialogue
 #@onready var roll_handler = $"../RollBox"
 @onready var sprites_handler = $SpriteHandler
+
 
 func _ready():
 	dialogue_finished = false
@@ -23,8 +28,9 @@ func clear_dialogue():
 	is_rolling = false
 	for child in get_children():
 		if child is Button:
-			button_cache.erase(child)
-			child.queue_free()
+			#button_cache.erase(child)
+			#child.queue_free()
+			child.hide()
 
 func add_text(text: String):
 	$text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -58,7 +64,6 @@ func _on_ez_dialogue_dialogue_generated(response: DialogueResponse):
 	if response.choices.is_empty():
 		add_choice("[...]", 0)
 	else:
-		print("Adding choices: " + str(response.choices.size()))
 		for i in response.choices.size():
 			add_choice(response.choices[i], i)
 
@@ -163,7 +168,24 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			var right_character: String = right_character_name + "_" + right_character_expression
 			
 			print("[changesprites] Not implemented yet.")
-			#sprites_handler.change_characters_visual(left_character, right_character)
+			sprites_handler.change_characters_visual(left_character, right_character)
+	elif params[0] == "hidesprites":
+		maximize_dialogue_size()
+		sprites_handler.hide_all_sprites()
+	elif params[0] == "hideleftsprite":
+		sprites_handler.hide_left_sprite()
+	elif params[0] == "hiderightsprite":
+		maximize_dialogue_size()
+		sprites_handler.hide_right_sprite()
+	elif params[0] == "showsprites":
+		minimize_dialogue_size()
+		sprites_handler.show_all_sprites()
+	elif params[0] == "showleftsprite":
+		sprites_handler.show_left_sprite()
+	elif params[0] == "showrightsprite":
+		minimize_dialogue_size()
+		sprites_handler.show_right_sprite()
+	
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
@@ -175,6 +197,20 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(checkparam,\"<|>|<=|>=|==|!=\",\"paramname\",value) => comparison_result")
 		print("signal(highestparam) => highest_param")
 		print("VISUAL SIGNALS:")
-		print("WIP: signal(changesprites,\"leftcharactername\",\"leftcharacterexpression\",\"rightcharactername\",\"rightcharacterexpression\")")
-		
-		
+		print("signal(changesprites,\"leftcharactername\",\"leftcharacterexpression\",\"rightcharactername\",\"rightcharacterexpression\")")
+		print("signal(hidesprites)")
+		print("signal(hideleftsprite)")
+		print("signal(hiderightsprite)")
+		print("signal(showsprites)")
+		print("signal(showleftsprite)")
+		print("signal(showrightsprite)")
+
+func maximize_dialogue_size():
+	$text.custom_minimum_size.x = dialogue_width_maximized
+	for button in button_cache:
+		button.custom_minimum_size.x = dialogue_width_maximized
+
+func minimize_dialogue_size():
+	$text.custom_minimum_size.x = dialogue_width_minimized
+	for button in button_cache:
+		button.custom_minimum_size.x = dialogue_width_minimized

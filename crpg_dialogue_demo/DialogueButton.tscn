@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://ddk1guohseox0" path="res://addons/ez_dialogue/dialogue_resource/DialogueButton.gd" id="1_uhhm3"]
 
 [node name="Button" type="Button" unique_id=1028972798]
-custom_minimum_size = Vector2(1728, 0)
+custom_minimum_size = Vector2(1350, 0)
+size_flags_horizontal = 0
 text = "test text"
 autowrap_mode = 3
 script = ExtResource("1_uhhm3")

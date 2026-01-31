@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://addons/ez_dialogue/dialogue_resource/DialogueBox.gd" id="1_ycayy"]
 [ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="2_bw6k5"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_y3j0m"]
+[ext_resource type="Script" uid="uid://cg6u82ophs13c" path="res://sprites_handler/sprite_handler.gd" id="4_bw6k5"]
+[ext_resource type="Texture2D" uid="uid://d3v8eynat77lb" path="res://icon.svg" id="5_y3j0m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ycayy"]
 font_size = 24
@@ -30,8 +32,9 @@ state = {
 
 [node name="text" type="Label" parent="CanvasLayer/DialogueBox" unique_id=815811077]
 clip_contents = true
-custom_minimum_size = Vector2(1000, 200)
+custom_minimum_size = Vector2(1350, 200)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 text = "testsetset
 asdfsdfasdfasdfasdf
@@ -44,7 +47,20 @@ clip_text = true
 [node name="EzDialogue" type="Node" parent="CanvasLayer/DialogueBox" unique_id=540485955]
 script = ExtResource("3_y3j0m")
 
-[node name="SpriteHandler" type="Node" parent="CanvasLayer/DialogueBox" unique_id=2029860655]
+[node name="SpriteHandler" type="Node2D" parent="CanvasLayer/DialogueBox" unique_id=753496223]
+script = ExtResource("4_bw6k5")
+
+[node name="LeftSprite" type="Sprite2D" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=295544699]
+z_index = -1
+position = Vector2(245, -298.00003)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_y3j0m")
+
+[node name="RightSprite" type="Sprite2D" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=1405184148]
+z_index = 1
+position = Vector2(1561, 94)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_y3j0m")
 
 [connection signal="custom_signal_received" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_custom_signal_received"]
 [connection signal="dialogue_generated" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_dialogue_generated"]
