@@ -7,7 +7,7 @@ signal typewriter_finished(response: DialogueResponse)
 @export var pitch_scale: float = 0.1
 
 @onready var mask_slider = $SpriteHandler/MaskSlider
-@onready var mask_popup = $"../MaskPopup"
+@onready var mask_popup = $"../../MaskPopup"
 @onready var character_name_handler = $CharacterNameHandler
 @onready var dialogue_choice_res = preload("res://addons/ez_dialogue/main_screen/DialogueButton.tscn")
 
@@ -61,29 +61,6 @@ func add_text(response: DialogueResponse) -> void:
 	$text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	# Defer starting the typewriter effect so the node is inside the scene tree and get_tree() is valid.
 	call_deferred("_typewriter_effect", response)
-
-#func _typewriter_effect(response: DialogueResponse) -> void:
-#	current_response = response
-#	var text_content = response.text
-#	$text.text = text_content
-#	$text.visible_ratio = 0
-#	
-#	# Kill any existing tween to prevent overlapping effects
-#	if typewriter_tween:
-#		typewriter_tween.kill()
-#	
-#	typewriter_tween = create_tween()
-#	
-#	# Calculate duration based on text length and speed
-#	var duration = text_content.length() * typewriter_speed
-#	
-#	# Animate the visible_ratio from 0 to 1
-#	typewriter_tween.tween_property($text, "visible_ratio", 1.0, duration)
-#	
-#	# Connect the finished signal
-#	typewriter_tween.finished.connect(func():
-#		typewriter_finished.emit(response)
-#	)
 
 func _typewriter_effect(response: DialogueResponse) -> void:
 	current_response = response

@@ -54,16 +54,25 @@ theme_override_font_sizes/font_size = 36
 text = "Hold ESCAPE to quit the game"
 horizontal_alignment = 1
 
-[node name="DialogueBox" type="VBoxContainer" parent="CanvasLayer" unique_id=802478050]
-custom_minimum_size = Vector2(0, 432)
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=619500761]
 anchors_preset = -1
-anchor_left = 0.05
+anchor_left = 0.01
 anchor_top = 0.55
-anchor_right = 0.95
-anchor_bottom = 0.95
+anchor_right = 0.99
+anchor_bottom = 0.98
+mouse_filter = 2
+
+[node name="DialogueBox" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=802478050]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 1.0
+anchor_bottom = 0.99
+offset_right = -531.6001
+offset_bottom = -264.40002
 grow_horizontal = 2
 size_flags_vertical = 8
-alignment = 2
 script = ExtResource("1_ycayy")
 dialogue = ExtResource("2_bw6k5")
 typewriter_speed = 0.069
@@ -75,13 +84,8 @@ state = {
 }
 next_scene_path = "res://scenes/game_scene.tscn"
 
-[node name="TypewriterPlayer" type="AudioStreamPlayer" parent="CanvasLayer/DialogueBox" unique_id=1659435956]
-stream = ExtResource("5_tcjrq")
-pitch_scale = 0.75
-max_polyphony = 3
-
-[node name="text" type="RichTextLabel" parent="CanvasLayer/DialogueBox" unique_id=732094933]
-custom_minimum_size = Vector2(1350, 200)
+[node name="text" type="RichTextLabel" parent="CanvasLayer/Panel/DialogueBox" unique_id=732094933]
+custom_minimum_size = Vector2(1350, 160)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
@@ -95,38 +99,45 @@ text = "[i]testsetset
 asdfsdfasdfasdfasdf
 asdfasdfasdfdasdfasdf
 asdfasdf[/i]"
+fit_content = true
+scroll_active = false
 
-[node name="EzDialogue" type="Node" parent="CanvasLayer/DialogueBox" unique_id=540485955]
+[node name="EzDialogue" type="Node" parent="CanvasLayer/Panel/DialogueBox" unique_id=540485955]
 script = ExtResource("3_y3j0m")
 
-[node name="SpriteHandler" type="Node2D" parent="CanvasLayer/DialogueBox" unique_id=753496223]
+[node name="TypewriterPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Panel/DialogueBox" unique_id=1659435956]
+stream = ExtResource("5_tcjrq")
+pitch_scale = 0.75
+max_polyphony = 3
+
+[node name="SpriteHandler" type="Node2D" parent="CanvasLayer/Panel/DialogueBox" unique_id=753496223]
 auto_translate_mode = 2
 script = ExtResource("4_bw6k5")
 
-[node name="LeftSprite" type="Sprite2D" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=295544699]
+[node name="LeftSprite" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler" unique_id=295544699]
 z_index = -1
 position = Vector2(442, -56)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("8_rvs2r")
 
-[node name="RightSprite" type="Sprite2D" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=1405184148]
+[node name="RightSprite" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler" unique_id=1405184148]
 z_index = 1
 position = Vector2(1228, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("9_rvs2r")
 
-[node name="MaskSlider" parent="CanvasLayer/DialogueBox/SpriteHandler" unique_id=267539981 instance=ExtResource("6_rurhu")]
+[node name="MaskSlider" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler" unique_id=267539981 instance=ExtResource("6_rurhu")]
 offset_left = 288.0
 offset_top = -367.0
 offset_right = 288.0
 offset_bottom = -367.0
 scale = Vector2(0.72, 0.72)
 
-[node name="CharacterNameHandler" type="Sprite2D" parent="CanvasLayer/DialogueBox" unique_id=444116452]
+[node name="CharacterNameHandler" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox" unique_id=444116452]
 position = Vector2(17, -19)
 script = ExtResource("7_kk2rg")
 
-[node name="name_text" type="Label" parent="CanvasLayer/DialogueBox/CharacterNameHandler" unique_id=1535854769]
+[node name="name_text" type="Label" parent="CanvasLayer/Panel/DialogueBox/CharacterNameHandler" unique_id=1535854769]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -148,6 +159,6 @@ unique_name_in_owner = true
 volume_db = -25.0
 autoplay = true
 
-[connection signal="custom_signal_received" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_custom_signal_received"]
-[connection signal="dialogue_generated" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_dialogue_generated"]
-[connection signal="end_of_dialogue_reached" from="CanvasLayer/DialogueBox/EzDialogue" to="CanvasLayer/DialogueBox" method="_on_ez_dialogue_end_of_dialogue_reached"]
+[connection signal="custom_signal_received" from="CanvasLayer/Panel/DialogueBox/EzDialogue" to="CanvasLayer/Panel/DialogueBox" method="_on_ez_dialogue_custom_signal_received"]
+[connection signal="dialogue_generated" from="CanvasLayer/Panel/DialogueBox/EzDialogue" to="CanvasLayer/Panel/DialogueBox" method="_on_ez_dialogue_dialogue_generated"]
+[connection signal="end_of_dialogue_reached" from="CanvasLayer/Panel/DialogueBox/EzDialogue" to="CanvasLayer/Panel/DialogueBox" method="_on_ez_dialogue_end_of_dialogue_reached"]
