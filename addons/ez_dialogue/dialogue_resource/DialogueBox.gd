@@ -303,6 +303,10 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		protagonist_mask_handler.flicker_mask(mask, duration)
 	elif params[0] == "hidemariamask":
 		protagonist_mask_handler.hide_all_masks()
+	elif params[0] == "blackscreen":
+		TransitionScreen.black_screen()
+	elif params[0] == "transitionin":
+		TransitionScreen.play_transition_in()	
 
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
