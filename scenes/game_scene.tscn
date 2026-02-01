@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ct3mld64mxh8w" path="res://scripts/utils/mask_popup.gd" id="1_mw25s"]
 [ext_resource type="Script" uid="uid://eoclu0gr4evd" path="res://addons/ez_dialogue/dialogue_resource/DialogueBox.gd" id="1_ycayy"]
-[ext_resource type="JSON" path="res://dialogue/sample_dialogue.json" id="2_bw6k5"]
 [ext_resource type="Script" uid="uid://d2ctk7y4xw0pv" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_y3j0m"]
 [ext_resource type="Script" uid="uid://cg6u82ophs13c" path="res://scripts/sprites_handler/sprite_handler.gd" id="4_bw6k5"]
+[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="5_6aqbo"]
 [ext_resource type="AudioStream" uid="uid://lc2g5t07qj3a" path="res://typing-sound-01-229863.mp3" id="5_tcjrq"]
 [ext_resource type="PackedScene" uid="uid://5oo0u215l715" path="res://scenes/utils/mask_slider.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://c7503r4l6h1c4" path="res://scripts/sprites_handler/character_name_handler.gd" id="7_kk2rg"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bo0prehh7nmoo" path="res://assets/sprites/maria_base.png" id="9_rvs2r"]
 [ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
 [ext_resource type="Texture2D" uid="uid://7xpvyyd67ixe" path="res://assets/sprites/npc_ggjmask_hen.png" id="12_6aqbo"]
-[ext_resource type="Script" uid="uid://bk0gqp5omwsrr" path="res://scripts/sprites_handler/protagonist_mask_handler.gd" id="12_77hjl"]
+[ext_resource type="Script" path="res://scripts/sprites_handler/protagonist_mask_handler.gd" id="12_77hjl"]
 [ext_resource type="Texture2D" uid="uid://bh5ew8dw1wo2u" path="res://assets/sprites/ggjmask_cat.png" id="12_tqxxy"]
 [ext_resource type="Texture2D" uid="uid://cls30rpiv30fg" path="res://assets/sprites/ggjmask_condor.png" id="13_5ay1a"]
 [ext_resource type="Texture2D" uid="uid://dghu3xofjc1x3" path="res://assets/sprites/ggjmask_fox.png" id="14_ldkr4"]
@@ -126,7 +126,7 @@ anchor_right = 0.75
 anchor_bottom = 0.99
 size_flags_vertical = 8
 script = ExtResource("1_ycayy")
-dialogue = ExtResource("2_bw6k5")
+dialogue = ExtResource("5_6aqbo")
 typewriter_speed = 0.069
 pitch_scale = 0.05
 state = {
