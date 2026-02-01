@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dxmst6kr0a4r5" path="res://assets/sprites/burgerkong_base.png" id="8_rvs2r"]
 [ext_resource type="Texture2D" uid="uid://bo0prehh7nmoo" path="res://assets/sprites/maria_base.png" id="9_rvs2r"]
 [ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
-[ext_resource type="Script" uid="uid://bk0gqp5omwsrr" path="res://scripts/sprites_handler/protagonist_mask_handler.gd" id="12_77hjl"]
+[ext_resource type="Script" path="res://scripts/sprites_handler/protagonist_mask_handler.gd" id="12_77hjl"]
 [ext_resource type="Texture2D" uid="uid://bh5ew8dw1wo2u" path="res://assets/sprites/ggjmask_cat.png" id="12_tqxxy"]
 [ext_resource type="Texture2D" uid="uid://cls30rpiv30fg" path="res://assets/sprites/ggjmask_condor.png" id="13_5ay1a"]
 [ext_resource type="Texture2D" uid="uid://dghu3xofjc1x3" path="res://assets/sprites/ggjmask_fox.png" id="14_ldkr4"]
@@ -130,8 +130,8 @@ typewriter_speed = 0.069
 pitch_scale = 0.05
 state = {
 "other_mask": 0,
-"self_mask_1": 0,
-"self_mask_2": 0
+"self_mask_1": 1,
+"self_mask_2": 1
 }
 next_scene_path = "res://scenes/game_scene.tscn"
 
