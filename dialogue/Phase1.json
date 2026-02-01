@@ -25,7 +25,7 @@
 		"id": 2.0,
 		"name": "Intro 2",
 		"position": [
-			580.0,
+			560.0,
 			60.0
 		]
 	},
@@ -35,7 +35,7 @@
 		"id": 3.0,
 		"name": "Intro 3",
 		"position": [
-			720.0,
+			680.0,
 			60.0
 		]
 	},
@@ -45,17 +45,17 @@
 		"id": 4.0,
 		"name": "Assessment 1",
 		"position": [
-			880.0,
+			800.0,
 			60.0
 		]
 	},
 	{
-		"commands_raw": "signal(setspeakername,Maria Garter)\nI'm sure you have no time to waste, so let's get to business, shall we?\nWhat are the companies current issues?\n?> ->Assessment 3",
+		"commands_raw": "signal(setspeakername,Maria Garter)\nI'm sure you have no time to waste, so let's get to business, shall we?\nWhat are the company's current issues?\n?> ->Assessment 3",
 		"gnode_name": "assessment 2",
 		"id": 5.0,
 		"name": "Assessment 2",
 		"position": [
-			1040.0,
+			960.0,
 			60.0
 		]
 	},
@@ -65,27 +65,87 @@
 		"id": 6.0,
 		"name": "Assessment 3",
 		"position": [
-			1200.0,
+			1120.0,
 			60.0
 		]
 	},
 	{
-		"commands_raw": "signal(setspeakername,Maria Garter)\nI see:\n?> Do you know where to start?->Assessment 5\n?> Any idea what might have caused this?->Assessment 5",
+		"commands_raw": "signal(setspeakername,Maria Garter)\nI see:\n?>Do you already know what to work on?->Assessment 5\n?>Any idea what might have caused this?->Assessment 5",
 		"gnode_name": "assessment 4",
 		"id": 7.0,
 		"name": "Assessment 4",
 		"position": [
-			1360.0,
+			1300.0,
 			60.0
 		]
 	},
 	{
-		"commands_raw": "asrsdkjl",
+		"commands_raw": "signal(setspeakername,Client)\nWell, my seniors let me know ComptaCorp hasn't had a negative report for the last 15 years... That is, until... I made my first management decisions, a few weeks ago.\n?>It's perfectly normal for a rookie to make mistakes->Assessment 6\n?>Don't jump to conclusions, it could be a coincidence->Assessment 7",
 		"gnode_name": "assessment 5",
 		"id": 8.0,
 		"name": "Assessment 5",
 		"position": [
-			1520.0,
+			1480.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Client)\nI guess you're right, maybe I should be a little lighter on myself.\nBut that doesn't change the fact I'm clearly incapable of making the right choice.\nIf I don't start performing well fast enough, then nobody will help me.\n?>I don't think your relationship with your coworkers could ever get that bad->Assessment 8",
+		"gnode_name": "assessment 6",
+		"id": 9.0,
+		"name": "Assessment 6",
+		"position": [
+			1660.0,
+			0.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Client)\nDo you think so? I guess I've never been lucky...\nBut even if that was the case, if even more coincidences were to happen.... I don't think anyone could ever respect me.\n?>I don't think your relationship with your coworkers could ever get that bad-> Assessment 8",
+		"gnode_name": "assessment 7",
+		"id": 10.0,
+		"name": "Assessment 7",
+		"position": [
+			1660.0,
+			120.0
+		]
+	},
+	{
+		"commands_raw": "bad colleagues bla bla\n?>- don't focus on them, focus on work-> Assessment 9\n?>- you could bond through continuing education courses-> Assessment 10\n-- why do you care about them so much anyways?\n--- I'm precarious and need their approval",
+		"gnode_name": "assessment 8",
+		"id": 11.0,
+		"name": "Assessment 8",
+		"position": [
+			1840.0,
+			60.0
+		]
+	},
+	{
+		"commands_raw": "?>- why do you care about them so much anyways?->Assessment 11",
+		"gnode_name": "assessment 9",
+		"id": 12.0,
+		"name": "Assessment 9",
+		"position": [
+			2020.0,
+			0.0
+		]
+	},
+	{
+		"commands_raw": "?>- why do you care about them so much anyways?->Assessment 11",
+		"gnode_name": "assessment 10",
+		"id": 13.0,
+		"name": "Assessment 10",
+		"position": [
+			2020.0,
+			120.0
+		]
+	},
+	{
+		"commands_raw": "- I'm precarious and need their approval",
+		"gnode_name": "assessment 11",
+		"id": 14.0,
+		"name": "Assessment 11",
+		"position": [
+			2220.0,
 			60.0
 		]
 	}
