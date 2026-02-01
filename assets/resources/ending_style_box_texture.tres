@@ -5,4 +5,4 @@
 [resource]
 texture = ExtResource("1_ljwhe")
 axis_stretch_vertical = 2
-modulate_color = Color(1, 1, 1, 0.3529412)
+modulate_color = Color(1, 1, 1, 0.8666667)
