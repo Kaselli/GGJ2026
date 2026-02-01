@@ -283,8 +283,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		var mask: String = str(params[1])
 		protagonist_mask_handler.show_mask(mask)
 	elif params[0] == "flickermask":
-		character_name_handler.hide_speaking_character_name_ui()
-		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		#character_name_handler.hide_speaking_character_name_ui()
+		#protagonist_name_handler.set_speaking_character_name("Maria Garter")
 		minimize_dialogue_size()
 		sprites_handler.show_right_sprite()
 		if params.size() < 2:
