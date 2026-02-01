@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GGJ2026"
-run/main_scene="uid://ltubbbjuqn4u"
+run/main_scene="uid://dud7o40rpldm6"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
