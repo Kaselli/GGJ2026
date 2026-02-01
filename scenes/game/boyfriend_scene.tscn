@@ -15,6 +15,7 @@ texture = ExtResource("2_8qlce")
 
 [node name="DialogueBox" parent="GameScene/CanvasLayer/Panel" parent_id_path=PackedInt32Array(2107874921, 619500761) index="2" unique_id=802478050]
 dialogue = ExtResource("3_o8sr8")
+other_mask_max_value = 12
 next_scene_path = "res://scenes/game/priest_scene.tscn"
 
 [node name="LeftSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="0" unique_id=295544699]

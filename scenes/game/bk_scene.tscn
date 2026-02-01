@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_e3tcj"]
 [ext_resource type="Texture2D" uid="uid://c22gnao38qno8" path="res://assets/sprites/bg/bg_bk.png" id="2_tnu6c"]
+[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="3_bdkvs"]
 
 [node name="BKScene" type="Node2D" unique_id=1548897363]
 
@@ -11,6 +12,7 @@
 texture = ExtResource("2_tnu6c")
 
 [node name="DialogueBox" parent="GameScene/CanvasLayer/Panel" parent_id_path=PackedInt32Array(2107874921, 619500761) index="2" unique_id=802478050]
+dialogue = ExtResource("3_bdkvs")
 next_scene_path = "res://scenes/game/boyfriend_scene.tscn"
 
 [node name="MaskSlider" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="2" unique_id=267539981]
