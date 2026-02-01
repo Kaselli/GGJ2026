@@ -38,6 +38,10 @@ func _ready():
 	character_name_handler.hide_speaking_character_name_ui()
 	typewriter_finished.connect(_on_typewriter_finished)
 
+	# game start fade in transition
+	if get_parent().get_parent().get_parent().get_parent().name == "BKScene":
+		TransitionScreen.play_transition_in()
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click"):
 		skip_typewriter()
@@ -329,11 +333,18 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "nextscene":
 		# dialogue_handler.end_dialogue()
+		TransitionScreen.play_transition_out()
+		await TransitionScreen.on_transition_complete
+		#await get_tree().create_timer(1.5).timeout
+		#print("Changing to next scene: " + next_scene_path)
 		get_tree().change_scene_to_file(next_scene_path)
 	elif params[0] == "triggerending":
 		if params.size() < 2:
 			print("[triggerending] Warning: No ending specified.")
 			return
+		TransitionScreen.play_transition_out()
+		await TransitionScreen.on_transition_complete
+		#await get_tree().create_timer(1.5).timeout
 		get_tree().change_scene_to_file("res://scenes/endings/" + params[1] + ".tscn")
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
