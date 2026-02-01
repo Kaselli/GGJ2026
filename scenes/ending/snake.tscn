@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_6k1qf"]
 [ext_resource type="Texture2D" uid="uid://booty2yarowt" path="res://assets/sprites/ending/ggjending_snake.png" id="2_m34pl"]
 [ext_resource type="StyleBox" uid="uid://dmjfo0vovelx6" path="res://assets/resources/ending_style_box_texture.tres" id="3_m34pl"]
-[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="4_m34pl"]
+[ext_resource type="JSON" path="res://dialogue/snake_ending.json" id="4_m34pl"]
 
-[node name="ending_lamb" type="Node2D" unique_id=365449638]
+[node name="ending_snake" type="Node2D" unique_id=365449638]
 
 [node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_6k1qf")]
 

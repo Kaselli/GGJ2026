@@ -57,11 +57,11 @@ _data = {
 }
 
 [node name="TransitionScreen" type="CanvasLayer" unique_id=918347221]
-layer = 1000
 script = ExtResource("1_rd5j2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=218779838]
 modulate = Color(1, 1, 1, 0)
+z_index = 1000
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

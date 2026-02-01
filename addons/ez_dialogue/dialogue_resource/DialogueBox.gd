@@ -311,7 +311,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
 		if params.size() < 2:
-			print("[playsound] Warning: No sound file specified.")
+			print("[playsound] Warning: No sound file path specified.")
 			return
 		if not ResourceLoader.exists(params[1]):
 			print("[playsound] Warning: Sound file " + params[1] + " does not exist.")
