@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dud7o40rpldm6"]
+
+[ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_e3tcj"]
+
+[node name="BKScene" type="Node2D" unique_id=1548897363]
+
+[node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_e3tcj")]
+
+[editable path="GameScene"]

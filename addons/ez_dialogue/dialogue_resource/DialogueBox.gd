@@ -330,6 +330,11 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	elif params[0] == "nextscene":
 		# dialogue_handler.end_dialogue()
 		get_tree().change_scene_to_file(next_scene_path)
+	elif params[0] == "triggerending":
+		if params.size() < 2:
+			print("[triggerending] Warning: No ending specified.")
+			return
+		get_tree().change_scene_to_file("res://scenes/endings/" + params[1] + ".tscn")
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:

@@ -105,8 +105,8 @@
 		"id": 12.0,
 		"name": "scene load test",
 		"position": [
-			2060.0,
-			540.0
+			2100.0,
+			400.0
 		]
 	},
 	{
@@ -120,7 +120,7 @@
 		]
 	},
 	{
-		"commands_raw": "?> Load scene -> scene load test\n\n?> Set maria Mask Fox -> maria fox mask\n\n?> Unset Maria Mask -> maria unmask\n\n?> Maria Flicker Snake Mask -> maria flicker mask\n\n?> back -> options2",
+		"commands_raw": "?> Load scene -> scene load test\n\n?> Set maria Mask Fox -> maria fox mask\n\n?> Unset Maria Mask -> maria unmask\n\n?> Maria Flicker Snake Mask -> maria flicker mask\n\n?> Set Maria confident -> set maria confident\n\n?> back -> options2",
 		"gnode_name": "options3",
 		"id": 14.0,
 		"name": "options3",
@@ -135,8 +135,8 @@
 		"id": 15.0,
 		"name": "maria fox mask",
 		"position": [
-			2080.0,
-			420.0
+			2120.0,
+			280.0
 		]
 	},
 	{
@@ -145,8 +145,8 @@
 		"id": 16.0,
 		"name": "maria unmask",
 		"position": [
-			2080.0,
-			300.0
+			2120.0,
+			160.0
 		]
 	},
 	{
@@ -155,8 +155,18 @@
 		"id": 17.0,
 		"name": "maria flicker mask",
 		"position": [
-			2080.0,
-			660.0
+			2120.0,
+			520.0
+		]
+	},
+	{
+		"commands_raw": "signal(changerightsprite,maria,confident)\n-> options3",
+		"gnode_name": "set maria confident",
+		"id": 18.0,
+		"name": "set maria confident",
+		"position": [
+			2120.0,
+			640.0
 		]
 	}
 ]

@@ -1,12 +1,11 @@
 extends Node
 
-
 @onready var left_sprite = $LeftSprite
 @onready var right_sprite = $RightSprite
 
 func change_left_character_visual(left_character: String) -> void:
 	if left_character != "":
-		var left_sprite_loaded = load("res://sprites/" + left_character + ".png")
+		var left_sprite_loaded = load("res://assets/sprites/" + left_character + ".png")
 		if left_sprite_loaded == null:
 			print("Error: Could not load left character sprite: " + left_character)
 			hide_left_sprite()
@@ -19,7 +18,7 @@ func change_left_character_visual(left_character: String) -> void:
 
 func change_right_character_visual(right_character: String) -> void:
 	if right_character != "":
-		var right_sprite_loaded = load("res://sprites/" + right_character + ".png")
+		var right_sprite_loaded = load("res://assets/sprites/" + right_character + ".png")
 		if right_sprite_loaded == null:
 			print("Error: Could not load right character sprite: " + right_character)
 			hide_right_sprite()
