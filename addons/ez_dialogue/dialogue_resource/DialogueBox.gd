@@ -381,7 +381,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(triggerending,\"endingname\")")
 
 func maximize_dialogue_size():
-	anchor_right = 0.995
+	anchor_right = 0.99
 
 func minimize_dialogue_size():
 	anchor_right = 0.75

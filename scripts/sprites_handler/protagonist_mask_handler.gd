@@ -12,7 +12,7 @@ var tween: Tween
 
 func hide_all_masks() -> void:
     if tween:
-        tween.stop_all()
+        tween.kill()
         tween = null
     for mask in masks.values():
         mask.hide()
