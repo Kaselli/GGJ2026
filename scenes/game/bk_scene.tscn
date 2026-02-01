@@ -6,4 +6,10 @@
 
 [node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_e3tcj")]
 
+[node name="MaskSlider" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="2" unique_id=267539981]
+offset_left = 487.40002
+offset_top = -467.48004
+offset_right = 487.40002
+offset_bottom = -467.48004
+
 [editable path="GameScene"]

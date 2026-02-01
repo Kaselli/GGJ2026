@@ -20,11 +20,18 @@
 [ext_resource type="Texture2D" uid="uid://dlamyaccemw50" path="res://assets/sprites/ggjmask_lamb.png" id="15_liy57"]
 [ext_resource type="Texture2D" uid="uid://dxttak57lmkww" path="res://assets/sprites/ggjmask_mantis.png" id="16_mwyo0"]
 [ext_resource type="Texture2D" uid="uid://c142d2hjawl0d" path="res://assets/sprites/ggjmask_snake.png" id="17_s76x2"]
+[ext_resource type="Texture2D" uid="uid://dn4mu0lcp31ki" path="res://assets/sprites/ending/ggjending_lamb.png" id="21_ro0ie"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77hjl"]
 bg_color = Color(0.16, 0.16, 0.16, 1)
 
 [node name="GameScene" type="Node2D" unique_id=2107874921]
+
+[node name="Background" type="TextureRect" parent="." unique_id=980556202]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("21_ro0ie")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=509706036]
 
@@ -179,16 +186,15 @@ scale = Vector2(0.415, 0.415)
 texture = ExtResource("9_rvs2r")
 
 [node name="MaskSlider" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler" unique_id=267539981 instance=ExtResource("6_rurhu")]
-offset_left = 487.392
-offset_top = -516.104
-offset_right = 487.392
-offset_bottom = -516.104
+offset_left = 489.40002
+offset_top = -465.48004
+offset_right = 489.40002
+offset_bottom = -465.48004
 scale = Vector2(0.845, 0.845)
 max_x = 1400.0
 
 [node name="MaskSprite" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" unique_id=1606291848]
 z_index = 2
-position = Vector2(-8.274542, 68.19411)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("12_6aqbo")
 

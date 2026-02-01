@@ -365,6 +365,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(settypewritersfx,\"soundfilepath\")")
 		print("SCENE MANAGEMENT RELATED SIGNALS:")
 		print("signal(nextscene)")
+		print("signal(triggerending,\"endingname\")")
 
 func maximize_dialogue_size():
 	anchor_right = 0.995

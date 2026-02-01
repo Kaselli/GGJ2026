@@ -18,7 +18,6 @@ offset_right = 628.4001
 offset_bottom = -502.47998
 
 [node name="MaskSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" index="0" unique_id=1606291848]
-position = Vector2(0, 0)
 texture = ExtResource("3_8qlce")
 
 [editable path="GameScene"]
