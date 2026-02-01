@@ -61,14 +61,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mw25s")
 
-[node name="PopupBG" type="Sprite2D" parent="CanvasLayer/MaskPopup" unique_id=2830424]
-
-[node name="MaskText" type="Label" parent="CanvasLayer/MaskPopup" unique_id=547561097]
+[node name="Panel" type="Panel" parent="CanvasLayer/MaskPopup" unique_id=451148082]
+custom_minimum_size = Vector2(580, 50)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ttvoq")
+
+[node name="MaskText" type="Label" parent="CanvasLayer/MaskPopup/Panel" unique_id=547561097]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 36
-text = "Face of the 67"
+text = "You wear the face of the Fox"
+horizontal_alignment = 1
 
 [node name="QuitUI" type="CenterContainer" parent="CanvasLayer" unique_id=734777501]
+visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
