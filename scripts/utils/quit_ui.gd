@@ -3,6 +3,7 @@ extends Node
 @export var base_escape_text: String = "Hold ESCAPE to quit the game"
 @onready var panel = $Panel
 @onready var escape_label = $Panel/QuitLabel
+var is_game_end = false
 
 var escape_held_time = 0.0
 const ESCAPE_HOLD_DURATION = 3.0
@@ -26,5 +27,12 @@ func _process(delta: float) -> void:
 	else:
 		escape_held_time = 0.0
 		escape_label.text = base_escape_text
-		escape_label.visible = false
-		panel.visible = false
+		if !is_game_end:
+			escape_label.visible = false
+			panel.visible = false
+
+func show_quit_ui() -> void:
+	print("Showing quit UI")
+	is_game_end = true
+	escape_label.visible = true
+	panel.visible = true

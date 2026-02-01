@@ -206,6 +206,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		var highest_value: int = -INF
 
 		for key in state.keys():
+			if key == "other_mask":
+				continue
 			if state[key] is int:
 				var param_value: int = state[key]
 				if param_value > highest_value:
@@ -335,6 +337,10 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			$TypewriterPlayer.stream = new_stream
 		else:
 			print("[settypewritersfx] Warning: Loaded resource is not an AudioStream.")
+	elif params[0] == "playclothessfx":
+		if %SFXAudioStreamPlayer.stream != null:
+			%SFXAudioStreamPlayer.stop() 
+		%SFXAudioStreamPlayer.play("res://clothes.mp3")
 
 	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "nextscene":
@@ -352,6 +358,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		await TransitionScreen.on_transition_complete
 		#await get_tree().create_timer(1.5).timeout
 		get_tree().change_scene_to_file("res://scenes/endings/" + params[1] + ".tscn")
+	elif params[0] == "showquitui":
+		$"../../QuitUI".show_quit_ui()
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
