@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lshkf6hny2s6"
-path="res://.godot/imported/ggjmask1.png-700d2137b5c08db6eba0b6d075a2b1fa.ctex"
+uid="uid://d3iobkmrxweuw"
+path="res://.godot/imported/npc_ggjmask_goat.png-aed154a610f66d9742cff431fb278f7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ggjmask1.png"
-dest_files=["res://.godot/imported/ggjmask1.png-700d2137b5c08db6eba0b6d075a2b1fa.ctex"]
+source_file="res://assets/sprites/npc_ggjmask_goat.png"
+dest_files=["res://.godot/imported/npc_ggjmask_goat.png-aed154a610f66d9742cff431fb278f7e.ctex"]
 
 [params]
 
