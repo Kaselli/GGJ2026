@@ -1,4 +1,5 @@
 extends Control
+var tween: Tween
 
 @onready var masks = {
     "CAT": $Cat,
@@ -10,8 +11,12 @@ extends Control
 }
 
 func hide_all_masks() -> void:
+    if tween:
+        tween.stop_all()
+        tween = null
     for mask in masks.values():
         mask.hide()
+        mask.modulate.a = 1.0
 
 func show_mask(mask_name: String) -> void:
     hide_all_masks()
@@ -28,7 +33,7 @@ func flicker_mask(mask_name: String, duration: float = 1.5) -> void:
     target.modulate.a = .5
     target.show()
 
-    var tween = create_tween()
+    tween = create_tween()
     # This toggles the visibility rapidly by stepping the property
     for i in range(int(duration * 10)): 
         tween.tween_callback(func(): target.visible = !target.visible)

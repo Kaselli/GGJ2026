@@ -246,12 +246,14 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	elif params[0] == "hidesprites":
 		maximize_dialogue_size()
 		protagonist_name_handler.hide_speaking_character_name_ui()
+		protagonist_mask_handler.hide_all_masks()
 		sprites_handler.hide_all_sprites()
 	elif params[0] == "hideleftsprite":
 		sprites_handler.hide_left_sprite()
 	elif params[0] == "hiderightsprite":
 		maximize_dialogue_size()
 		protagonist_name_handler.hide_speaking_character_name_ui()
+		protagonist_mask_handler.hide_all_masks()
 		sprites_handler.hide_right_sprite()
 	elif params[0] == "showsprites":
 		minimize_dialogue_size()
