@@ -8,6 +8,12 @@
 
 [node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_6y1ss")]
 
+[node name="QuitUI" parent="GameScene/CanvasLayer" parent_id_path=PackedInt32Array(2107874921, 509706036) index="1" unique_id=734777501]
+offset_left = 666.0
+offset_top = -500.0
+offset_right = 666.00024
+offset_bottom = -500.0
+
 [node name="Panel" parent="GameScene/CanvasLayer" parent_id_path=PackedInt32Array(2107874921, 509706036) index="2" unique_id=619500761]
 anchor_top = 0.8
 theme_override_styles/panel = ExtResource("2_4owvb")

@@ -352,6 +352,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		await TransitionScreen.on_transition_complete
 		#await get_tree().create_timer(1.5).timeout
 		get_tree().change_scene_to_file("res://scenes/endings/" + params[1] + ".tscn")
+	elif params[0] == "showquitui":
+		$"../../QuitUI".show_quit_ui()
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
