@@ -8,7 +8,8 @@ signal typewriter_finished(response: DialogueResponse)
 
 @onready var mask_slider = $SpriteHandler/MaskSlider
 @onready var mask_popup = $"../../MaskPopup"
-@onready var character_name_handler = $CharacterNameHandler
+@onready var character_name_handler = $"../CharacterNameHandler"
+@onready var protagonist_name_handler = $"../ProtagNameHandler"
 @onready var dialogue_choice_res = preload("res://addons/ez_dialogue/main_screen/DialogueButton.tscn")
 
 @export var state: Dictionary = {}
@@ -29,6 +30,7 @@ var current_response: DialogueResponse
 @onready var sprites_handler = $SpriteHandler
 
 func _ready():
+	minimize_dialogue_size()
 	dialogue_finished = false
 	dialogue_handler.start_dialogue(dialogue, state)
 	mask_slider.init_slider(other_mask_max_value)
@@ -232,14 +234,19 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		var right_character_name: String = params[1]
 		var right_character_expression: String = params[2]
 		var right_character: String = right_character_name + "_" + right_character_expression
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		character_name_handler.hide_speaking_character_name_ui()
 		sprites_handler.change_right_character_visual(right_character)
+		minimize_dialogue_size()
 	elif params[0] == "hidesprites":
 		maximize_dialogue_size()
+		protagonist_name_handler.hide_speaking_character_name_ui()
 		sprites_handler.hide_all_sprites()
 	elif params[0] == "hideleftsprite":
 		sprites_handler.hide_left_sprite()
 	elif params[0] == "hiderightsprite":
 		maximize_dialogue_size()
+		protagonist_name_handler.hide_speaking_character_name_ui()
 		sprites_handler.hide_right_sprite()
 	elif params[0] == "showsprites":
 		minimize_dialogue_size()
@@ -247,6 +254,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	elif params[0] == "showleftsprite":
 		sprites_handler.show_left_sprite()
 	elif params[0] == "showrightsprite":
+		character_name_handler.hide_speaking_character_name_ui()
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
 		minimize_dialogue_size()
 		sprites_handler.show_right_sprite()
 	elif params[0] == "setspeakername":
@@ -254,7 +263,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			character_name_handler.hide_speaking_character_name_ui()
 		else:
 			var character_name: String = params[1]
-			character_name_handler.set_speaking_character_name(character_name)	
+			character_name_handler.set_speaking_character_name(character_name)
+			protagonist_name_handler.hide_speaking_character_name_ui()
 	elif params[0] == "maskpopup":
 		if params.size() < 2 or not params[1].is_valid_int():
 			print("[maskpopup] Warning: Invalid mask value parameter.")
@@ -322,11 +332,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(nextscene)")
 
 func maximize_dialogue_size():
-	$text.custom_minimum_size.x = dialogue_width_maximized
-	for button in button_cache:
-		button.custom_minimum_size.x = dialogue_width_maximized
+	anchor_right = 0.995
 
 func minimize_dialogue_size():
-	$text.custom_minimum_size.x = dialogue_width_minimized
-	for button in button_cache:
-		button.custom_minimum_size.x = dialogue_width_minimized
+	anchor_right = 0.75
