@@ -15,6 +15,10 @@ run/main_scene="uid://dud7o40rpldm6"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TransitionScreen="*uid://bmt1qnbwsxwwd"
+
 [display]
 
 window/size/viewport_width=1920

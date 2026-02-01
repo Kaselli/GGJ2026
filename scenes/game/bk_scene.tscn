@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://dud7o40rpldm6"]
 
 [ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_e3tcj"]
-[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="2_tnu6c"]
 
 [node name="BKScene" type="Node2D" unique_id=1548897363]
 
 [node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_e3tcj")]
 
 [node name="DialogueBox" parent="GameScene/CanvasLayer/Panel" parent_id_path=PackedInt32Array(2107874921, 619500761) index="2" unique_id=802478050]
-dialogue = ExtResource("2_tnu6c")
 next_scene_path = "res://scenes/game/boyfriend_scene.tscn"
 
 [node name="MaskSlider" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="2" unique_id=267539981]
