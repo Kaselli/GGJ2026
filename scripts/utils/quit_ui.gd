@@ -1,7 +1,9 @@
 extends Node
 
 @export var base_escape_text: String = "Hold ESCAPE to quit the game"
-@onready var escape_label = $QuitLabel
+@onready var panel = $Panel
+@onready var escape_label = $Panel/QuitLabel
+var is_game_end = false
 
 var escape_held_time = 0.0
 const ESCAPE_HOLD_DURATION = 3.0
@@ -9,6 +11,7 @@ const ESCAPE_HOLD_DURATION = 3.0
 func _ready() -> void:
 	escape_label.text = base_escape_text
 	escape_label.visible = false
+	panel.visible = false
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_cancel"):
@@ -20,8 +23,16 @@ func _process(delta: float) -> void:
 		var dot_string = ".".repeat(dots)
 		escape_label.text = base_escape_text + dot_string
 		escape_label.visible = true
-			
+		panel.visible = true
 	else:
 		escape_held_time = 0.0
 		escape_label.text = base_escape_text
-		escape_label.visible = false
+		if !is_game_end:
+			escape_label.visible = false
+			panel.visible = false
+
+func show_quit_ui() -> void:
+	print("Showing quit UI")
+	is_game_end = true
+	escape_label.visible = true
+	panel.visible = true

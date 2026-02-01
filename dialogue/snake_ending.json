@@ -1,0 +1,72 @@
+[
+	{
+		"commands_raw": "signal(blackscreen)\nsignal(hidesprites)\nAs our natural instinct took over, coiling ourselves in an existence closer to the one of mere animals, an awful thought came over me.\nWhat if I was not the one sent to tempt him, but instead he was the one to receive me and punish me for my sins? \n\n?>-> 1",
+		"gnode_name": "start",
+		"id": 0.0,
+		"name": "start",
+		"position": [
+			0.0,
+			4360.0
+		]
+	},
+	{
+		"commands_raw": "signal(transitionin)\nbg is now visible, should play clothes sounds here",
+		"gnode_name": "transition in",
+		"id": 1.0,
+		"name": "transition in",
+		"position": [
+			200.0,
+			4340.0
+		]
+	},
+	{
+		"commands_raw": "I quickly brushed it off, even though this raw action had not been the most satisfying, power surely was blissful.\n?> -> 3",
+		"gnode_name": "1",
+		"id": 2.0,
+		"name": "1",
+		"position": [
+			80.0,
+			4420.0
+		]
+	},
+	{
+		"commands_raw": "We lied on the bench for a while, as I got up to dress myself up again, I felt the violence of his hand pulling on to my face.\nTears steaming down his face, the broken gaze that reassured me until now, became a frightful omen.\n?> -> 4",
+		"gnode_name": "3",
+		"id": 3.0,
+		"name": "3",
+		"position": [
+			220.0,
+			4440.0
+		]
+	},
+	{
+		"commands_raw": "signal(setspeakername,Priest)\n“Oh serpent of temptation show me your true face, and let me forgive you and myself as my final duty.”\n?> -> 5",
+		"gnode_name": "4",
+		"id": 4.0,
+		"name": "4",
+		"position": [
+			260.0,
+			4580.0
+		]
+	},
+	{
+		"commands_raw": "signal(transitionin)\nsignal(setspeakername)\nBut when the mask was removed, he stood still as confused as he had been before.\n?> ->6",
+		"gnode_name": "5",
+		"id": 5.0,
+		"name": "5",
+		"position": [
+			220.0,
+			4700.0
+		]
+	},
+	{
+		"commands_raw": "There was nothing but an empty smile and the regrets of two twisted lives.",
+		"gnode_name": "6",
+		"id": 6.0,
+		"name": "6",
+		"position": [
+			380.0,
+			4720.0
+		]
+	}
+]

@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://dmjfo0vovelx6"]
+
+[ext_resource type="Texture2D" uid="uid://3284uvk3i45u" path="res://assets/sprites/ui/UI_dialogue_box.png" id="1_ljwhe"]
+
+[resource]
+texture = ExtResource("1_ljwhe")
+axis_stretch_vertical = 2
+modulate_color = Color(1, 1, 1, 0.3529412)

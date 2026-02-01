@@ -38,6 +38,10 @@ func _ready():
 	character_name_handler.hide_speaking_character_name_ui()
 	typewriter_finished.connect(_on_typewriter_finished)
 
+	# game start fade in transition
+	if get_parent().get_parent().get_parent().get_parent().name == "BKScene":
+		TransitionScreen.play_transition_in()
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click"):
 		skip_typewriter()
@@ -202,6 +206,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		var highest_value: int = -INF
 
 		for key in state.keys():
+			if key == "other_mask":
+				continue
 			if state[key] is int:
 				var param_value: int = state[key]
 				if param_value > highest_value:
@@ -242,12 +248,14 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	elif params[0] == "hidesprites":
 		maximize_dialogue_size()
 		protagonist_name_handler.hide_speaking_character_name_ui()
+		protagonist_mask_handler.hide_all_masks()
 		sprites_handler.hide_all_sprites()
 	elif params[0] == "hideleftsprite":
 		sprites_handler.hide_left_sprite()
 	elif params[0] == "hiderightsprite":
 		maximize_dialogue_size()
 		protagonist_name_handler.hide_speaking_character_name_ui()
+		protagonist_mask_handler.hide_all_masks()
 		sprites_handler.hide_right_sprite()
 	elif params[0] == "showsprites":
 		minimize_dialogue_size()
@@ -297,11 +305,15 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		protagonist_mask_handler.flicker_mask(mask, duration)
 	elif params[0] == "hidemariamask":
 		protagonist_mask_handler.hide_all_masks()
+	elif params[0] == "blackscreen":
+		TransitionScreen.black_screen()
+	elif params[0] == "transitionin":
+		TransitionScreen.play_transition_in()	
 
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
 		if params.size() < 2:
-			print("[playsound] Warning: No sound file specified.")
+			print("[playsound] Warning: No sound file path specified.")
 			return
 		if not ResourceLoader.exists(params[1]):
 			print("[playsound] Warning: Sound file " + params[1] + " does not exist.")
@@ -325,16 +337,29 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			$TypewriterPlayer.stream = new_stream
 		else:
 			print("[settypewritersfx] Warning: Loaded resource is not an AudioStream.")
+	elif params[0] == "playclothessfx":
+		if %SFXAudioStreamPlayer.stream != null:
+			%SFXAudioStreamPlayer.stop() 
+		%SFXAudioStreamPlayer.play("res://clothes.mp3")
 
 	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "nextscene":
 		# dialogue_handler.end_dialogue()
+		TransitionScreen.play_transition_out()
+		await TransitionScreen.on_transition_complete
+		#await get_tree().create_timer(1.5).timeout
+		#print("Changing to next scene: " + next_scene_path)
 		get_tree().change_scene_to_file(next_scene_path)
 	elif params[0] == "triggerending":
 		if params.size() < 2:
 			print("[triggerending] Warning: No ending specified.")
 			return
+		TransitionScreen.play_transition_out()
+		await TransitionScreen.on_transition_complete
+		#await get_tree().create_timer(1.5).timeout
 		get_tree().change_scene_to_file("res://scenes/endings/" + params[1] + ".tscn")
+	elif params[0] == "showquitui":
+		$"../../QuitUI".show_quit_ui()
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
 	else:
@@ -368,7 +393,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(triggerending,\"endingname\")")
 
 func maximize_dialogue_size():
-	anchor_right = 0.995
+	anchor_right = 0.99
 
 func minimize_dialogue_size():
 	anchor_right = 0.75

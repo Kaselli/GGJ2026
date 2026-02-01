@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="GGJ2026"
+config/version="1.0.0"
 run/main_scene="uid://dud7o40rpldm6"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+TransitionScreen="*uid://bmt1qnbwsxwwd"
 
 [display]
 
@@ -44,3 +49,4 @@ mouse_click={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

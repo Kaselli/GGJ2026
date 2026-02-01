@@ -1,16 +1,26 @@
 [gd_scene format=3 uid="uid://c6iicd4wl0qrw"]
 
 [ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_gmidb"]
-[ext_resource type="JSON" path="res://dialogue/Phase1.json" id="2_5nlo8"]
+[ext_resource type="Texture2D" uid="uid://dn5trdgc5sb7a" path="res://assets/sprites/bg/bg_priest.png" id="2_5nlo8"]
 [ext_resource type="Texture2D" uid="uid://cyuig2wg0t254" path="res://assets/sprites/priest_base.png" id="2_b5h0u"]
 [ext_resource type="Texture2D" uid="uid://d3iobkmrxweuw" path="res://assets/sprites/npc_ggjmask_goat.png" id="3_c2u2i"]
+[ext_resource type="JSON" path="res://dialogue/Dialogo 3.json" id="3_xef5s"]
 
 [node name="priest_scene" type="Node2D" unique_id=893004176]
 
 [node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_gmidb")]
 
+[node name="Background" parent="GameScene" index="0" unique_id=980556202]
+texture = ExtResource("2_5nlo8")
+
 [node name="DialogueBox" parent="GameScene/CanvasLayer/Panel" parent_id_path=PackedInt32Array(2107874921, 619500761) index="2" unique_id=802478050]
-dialogue = ExtResource("2_5nlo8")
+dialogue = ExtResource("3_xef5s")
+state = {
+"other_mask": 0,
+"self_mask_1": 1,
+"self_mask_2": 1
+}
+other_mask_max_value = 10
 next_scene_path = "res://scenes/ending/lamb.tscn"
 
 [node name="LeftSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="0" unique_id=295544699]
