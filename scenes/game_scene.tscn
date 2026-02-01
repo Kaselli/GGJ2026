@@ -78,7 +78,6 @@ text = "You wear the face of the Fox"
 horizontal_alignment = 1
 
 [node name="QuitUI" type="CenterContainer" parent="CanvasLayer" unique_id=734777501]
-visible = false
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
