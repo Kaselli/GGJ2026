@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kum26eedi2gf"
-path="res://.godot/imported/ggj_pc_pose2.png-94a26bbe876162c774ff779946f6e7a4.ctex"
+uid="uid://dghu3xofjc1x3"
+path="res://.godot/imported/ggjmask_fox.png-979ea6aea84689a39bc21d9e1c47c2cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ggj_pc_pose2.png"
-dest_files=["res://.godot/imported/ggj_pc_pose2.png-94a26bbe876162c774ff779946f6e7a4.ctex"]
+source_file="res://assets/sprites/ggjmask_fox.png"
+dest_files=["res://.godot/imported/ggjmask_fox.png-979ea6aea84689a39bc21d9e1c47c2cd.ctex"]
 
 [params]
 

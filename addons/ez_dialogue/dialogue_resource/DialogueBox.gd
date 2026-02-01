@@ -4,11 +4,14 @@ signal typewriter_finished(response: DialogueResponse)
 
 @export var dialogue: JSON
 @export var typewriter_speed: float = 0.04
+@export var pitch_scale: float = 0.1
 
 @onready var mask_slider = $SpriteHandler/MaskSlider
-@onready var mask_popup = $"../MaskPopup"
-@onready var character_name_handler = $CharacterNameHandler
+@onready var mask_popup = $"../../MaskPopup"
+@onready var character_name_handler = $"../CharacterNameHandler"
+@onready var protagonist_name_handler = $"../ProtagNameHandler"
 @onready var dialogue_choice_res = preload("res://addons/ez_dialogue/main_screen/DialogueButton.tscn")
+@onready var protagonist_mask_handler = $SpriteHandler/ProtagonistMaskHandler
 
 @export var state: Dictionary = {}
 @export var other_mask_max_value: int = 6
@@ -19,23 +22,29 @@ signal typewriter_finished(response: DialogueResponse)
 @export var next_scene_path: String = ""
 
 var dialogue_finished = false
-
+var typewriter_tween: Tween
 var button_cache: Array[DialogueButton] = []
+var current_response: DialogueResponse
 
 @onready var dialogue_handler: EzDialogue = $EzDialogue
 #@onready var roll_handler = $"../RollBox"
 @onready var sprites_handler = $SpriteHandler
 
-
 func _ready():
+	minimize_dialogue_size()
 	dialogue_finished = false
 	dialogue_handler.start_dialogue(dialogue, state)
 	mask_slider.init_slider(other_mask_max_value)
 	character_name_handler.hide_speaking_character_name_ui()
 	typewriter_finished.connect(_on_typewriter_finished)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("mouse_click"):
+		skip_typewriter()
+
 func _on_typewriter_finished(response: DialogueResponse):
-	print("Typewriter finished for text: " + response.text)
+	#print("Typewriter finished for text: " + response.text)
+	current_response = null
 	if response.choices.is_empty():
 		add_choice("[...]", 0)
 	else:
@@ -57,24 +66,43 @@ func add_text(response: DialogueResponse) -> void:
 	call_deferred("_typewriter_effect", response)
 
 func _typewriter_effect(response: DialogueResponse) -> void:
-	var text = response.text
-	$text.text = ""
-	var char_index: int = 0
-	var total_length: int = text.length()
-
-	var last_character
-	while char_index < total_length:
-		$text.text += text[char_index]
-		char_index += 1
-		if char_index == total_length - 1:
-			get_tree().create_timer(typewriter_speed).timeout.connect(func():
-				typewriter_finished.emit(response)
-			)
-		else:
-			await get_tree().create_timer(typewriter_speed).timeout
+	current_response = response
+	var text_content = response.text
+	$text.text = text_content
+	$text.visible_ratio = 0
 	
-	if total_length == 0:
+	if typewriter_tween:
+		typewriter_tween.kill()
+	
+	typewriter_tween = create_tween()
+	var duration = text_content.length() * typewriter_speed
+	
+	# Use tween_method to call _on_typewriter_step repeatedly
+	typewriter_tween.tween_method(_on_typewriter_step, 0.0, 1.0, duration)
+	
+	typewriter_tween.finished.connect(func():
 		typewriter_finished.emit(response)
+	)
+
+func _on_typewriter_step(ratio: float) -> void:
+	# Check if we've actually moved forward enough to show a new character
+	var old_visible_chars = $text.visible_characters
+	$text.visible_ratio = ratio
+		
+	# If the number of visible characters increased, play the sound
+	if $text.visible_characters > old_visible_chars:
+		# Avoid playing sound for spaces to make it feel more natural
+		var last_char = $text.text[$text.visible_characters - 1]
+		if last_char != " ":
+			$TypewriterPlayer.pitch_scale = randf_range(1 - pitch_scale, 1 + pitch_scale)
+			$TypewriterPlayer.play()
+
+func skip_typewriter() -> void:
+	if typewriter_tween and typewriter_tween.is_running():
+		typewriter_tween.kill() # Stop the animation
+		$text.visible_ratio = 1.0 # Show all text immediately
+		# Manually emit since the tween was killed
+		typewriter_finished.emit(current_response)
 
 func add_choice(choice_text: String, id: int):
 	if button_cache.size() < id + 1:
@@ -207,14 +235,19 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		var right_character_name: String = params[1]
 		var right_character_expression: String = params[2]
 		var right_character: String = right_character_name + "_" + right_character_expression
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		character_name_handler.hide_speaking_character_name_ui()
 		sprites_handler.change_right_character_visual(right_character)
+		minimize_dialogue_size()
 	elif params[0] == "hidesprites":
 		maximize_dialogue_size()
+		protagonist_name_handler.hide_speaking_character_name_ui()
 		sprites_handler.hide_all_sprites()
 	elif params[0] == "hideleftsprite":
 		sprites_handler.hide_left_sprite()
 	elif params[0] == "hiderightsprite":
 		maximize_dialogue_size()
+		protagonist_name_handler.hide_speaking_character_name_ui()
 		sprites_handler.hide_right_sprite()
 	elif params[0] == "showsprites":
 		minimize_dialogue_size()
@@ -222,6 +255,8 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 	elif params[0] == "showleftsprite":
 		sprites_handler.show_left_sprite()
 	elif params[0] == "showrightsprite":
+		character_name_handler.hide_speaking_character_name_ui()
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
 		minimize_dialogue_size()
 		sprites_handler.show_right_sprite()
 	elif params[0] == "setspeakername":
@@ -229,13 +264,39 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			character_name_handler.hide_speaking_character_name_ui()
 		else:
 			var character_name: String = params[1]
-			character_name_handler.set_speaking_character_name(character_name)	
+			character_name_handler.set_speaking_character_name(character_name)
+			protagonist_name_handler.hide_speaking_character_name_ui()
 	elif params[0] == "maskpopup":
 		if params.size() < 2 or not params[1].is_valid_int():
 			print("[maskpopup] Warning: Invalid mask value parameter.")
 			return
 		var mask: String = params[1]
 		mask_popup.display(mask)
+	elif params[0] == "setmariamask":
+		character_name_handler.hide_speaking_character_name_ui()
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		minimize_dialogue_size()
+		sprites_handler.show_right_sprite()
+		if params.size() < 2:
+			print("[setmariamask] Warning: Invalid mask value parameter.")
+			return
+		var mask: String = str(params[1])
+		protagonist_mask_handler.show_mask(mask)
+	elif params[0] == "flickermask":
+		character_name_handler.hide_speaking_character_name_ui()
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		minimize_dialogue_size()
+		sprites_handler.show_right_sprite()
+		if params.size() < 2:
+			print("[flickermask] Warning: Invalid mask value parameter.")
+			return
+		var mask: String = str(params[1])
+		var duration: float = 2.0
+		if params.size() >= 3 and params[2].is_valid_float():
+			duration = float(params[2])
+		protagonist_mask_handler.flicker_mask(mask, duration)
+	elif params[0] == "hidemariamask":
+		protagonist_mask_handler.hide_all_masks()
 
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
@@ -252,6 +313,18 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		%SFXAudioStreamPlayer.stop()
 		if %SFXAudioStreamPlayer.stream != null:
 			%SFXAudioStreamPlayer.stream = null
+	elif params[0] == "settypewritersfx":
+		if params.size() < 2:
+			print("[settypewritersfx] Warning: No sound file specified.")
+			return
+		if not ResourceLoader.exists(params[1]):
+			print("[settypewritersfx] Warning: Sound file " + params[1] + " does not exist.")
+			return
+		var new_stream = load(params[1])
+		if new_stream is AudioStream:
+			$TypewriterPlayer.stream = new_stream
+		else:
+			print("[settypewritersfx] Warning: Loaded resource is not an AudioStream.")
 
 	########################### SCENE MANAGEMENT SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "nextscene":
@@ -277,18 +350,19 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(showleftsprite)")
 		print("signal(showrightsprite)")
 		print("signal(setspeakername,-optional: \"charactername\")")
+		print("signal(maskpopup,\"maskvalue\")")
+		print("signal(setmariamask,\"maskvalue\")")
+		print("signal(flickermask,\"maskvalue\",-optional: duration)")
+		print("signal(hidemariamask)")
 		print("SOUND RELATED SIGNALS:")
 		print("signal(playsound,\"soundfilepath\")")
 		print("signal(stopsound)")
+		print("signal(settypewritersfx,\"soundfilepath\")")
 		print("SCENE MANAGEMENT RELATED SIGNALS:")
 		print("signal(nextscene)")
 
 func maximize_dialogue_size():
-	$text.custom_minimum_size.x = dialogue_width_maximized
-	for button in button_cache:
-		button.custom_minimum_size.x = dialogue_width_maximized
+	anchor_right = 0.995
 
 func minimize_dialogue_size():
-	$text.custom_minimum_size.x = dialogue_width_minimized
-	for button in button_cache:
-		button.custom_minimum_size.x = dialogue_width_minimized
+	anchor_right = 0.75
