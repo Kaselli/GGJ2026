@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ba1qgfka2pp2b"]
+
+[ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_4hyue"]
+[ext_resource type="Texture2D" uid="uid://cx3yywgburp4q" path="res://assets/sprites/boyfriend_base.png" id="2_latpp"]
+[ext_resource type="Texture2D" uid="uid://x8p6acsa3hly" path="res://assets/sprites/npc_ggjmask_rabbit.png" id="3_8qlce"]
+
+[node name="boyfriend_scene" type="Node2D" unique_id=1160732937]
+
+[node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_4hyue")]
+
+[node name="LeftSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="0" unique_id=295544699]
+texture = ExtResource("2_latpp")
+
+[node name="MaskSlider" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="2" unique_id=267539981]
+offset_left = 628.4001
+offset_top = -502.47998
+offset_right = 628.4001
+offset_bottom = -502.47998
+
+[node name="MaskSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" index="0" unique_id=1606291848]
+position = Vector2(0, 0)
+texture = ExtResource("3_8qlce")
+
+[editable path="GameScene"]

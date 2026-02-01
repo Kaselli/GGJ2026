@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dxmst6kr0a4r5" path="res://assets/sprites/burgerkong_base.png" id="8_rvs2r"]
 [ext_resource type="Texture2D" uid="uid://bo0prehh7nmoo" path="res://assets/sprites/maria_base.png" id="9_rvs2r"]
 [ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
+[ext_resource type="Texture2D" uid="uid://7xpvyyd67ixe" path="res://assets/sprites/npc_ggjmask_hen.png" id="12_6aqbo"]
 [ext_resource type="Script" uid="uid://bk0gqp5omwsrr" path="res://scripts/sprites_handler/protagonist_mask_handler.gd" id="12_77hjl"]
 [ext_resource type="Texture2D" uid="uid://bh5ew8dw1wo2u" path="res://assets/sprites/ggjmask_cat.png" id="12_tqxxy"]
 [ext_resource type="Texture2D" uid="uid://cls30rpiv30fg" path="res://assets/sprites/ggjmask_condor.png" id="13_5ay1a"]
@@ -22,9 +23,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77hjl"]
 bg_color = Color(0.16, 0.16, 0.16, 1)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rvs2r"]
-load_path = "res://.godot/imported/ggjmask1.png-700d2137b5c08db6eba0b6d075a2b1fa.ctex"
 
 [node name="GameScene" type="Node2D" unique_id=2107874921]
 
@@ -190,9 +188,9 @@ max_x = 1400.0
 
 [node name="MaskSprite" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" unique_id=1606291848]
 z_index = 2
-position = Vector2(8.695, 0)
-scale = Vector2(0.28, 0.28)
-texture = SubResource("CompressedTexture2D_rvs2r")
+position = Vector2(-8.274542, 68.19411)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6aqbo")
 
 [node name="ProtagonistMaskHandler" type="Control" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler" unique_id=560254060]
 z_index = 1
