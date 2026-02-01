@@ -11,6 +11,7 @@ signal typewriter_finished(response: DialogueResponse)
 @onready var character_name_handler = $"../CharacterNameHandler"
 @onready var protagonist_name_handler = $"../ProtagNameHandler"
 @onready var dialogue_choice_res = preload("res://addons/ez_dialogue/main_screen/DialogueButton.tscn")
+@onready var protagonist_mask_handler = $SpriteHandler/ProtagonistMaskHandler
 
 @export var state: Dictionary = {}
 @export var other_mask_max_value: int = 6
@@ -271,6 +272,31 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 			return
 		var mask: String = params[1]
 		mask_popup.display(mask)
+	elif params[0] == "setmariamask":
+		character_name_handler.hide_speaking_character_name_ui()
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		minimize_dialogue_size()
+		sprites_handler.show_right_sprite()
+		if params.size() < 2:
+			print("[setmariamask] Warning: Invalid mask value parameter.")
+			return
+		var mask: String = str(params[1])
+		protagonist_mask_handler.show_mask(mask)
+	elif params[0] == "flickermask":
+		character_name_handler.hide_speaking_character_name_ui()
+		protagonist_name_handler.set_speaking_character_name("Maria Garter")
+		minimize_dialogue_size()
+		sprites_handler.show_right_sprite()
+		if params.size() < 2:
+			print("[flickermask] Warning: Invalid mask value parameter.")
+			return
+		var mask: String = str(params[1])
+		var duration: float = 2.0
+		if params.size() >= 3 and params[2].is_valid_float():
+			duration = float(params[2])
+		protagonist_mask_handler.flicker_mask(mask, duration)
+	elif params[0] == "hidemariamask":
+		protagonist_mask_handler.hide_all_masks()
 
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
@@ -324,6 +350,10 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(showleftsprite)")
 		print("signal(showrightsprite)")
 		print("signal(setspeakername,-optional: \"charactername\")")
+		print("signal(maskpopup,\"maskvalue\")")
+		print("signal(setmariamask,\"maskvalue\")")
+		print("signal(flickermask,\"maskvalue\",-optional: duration)")
+		print("signal(hidemariamask)")
 		print("SOUND RELATED SIGNALS:")
 		print("signal(playsound,\"soundfilepath\")")
 		print("signal(stopsound)")

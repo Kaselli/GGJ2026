@@ -12,6 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://dxmst6kr0a4r5" path="res://assets/sprites/burgerkong_base.png" id="8_rvs2r"]
 [ext_resource type="Texture2D" uid="uid://bo0prehh7nmoo" path="res://assets/sprites/maria_base.png" id="9_rvs2r"]
 [ext_resource type="AudioStream" uid="uid://hdk6oqjs4j4g" path="res://random-thoughts-20586.mp3" id="9_utbpp"]
+[ext_resource type="Script" uid="uid://bk0gqp5omwsrr" path="res://scripts/sprites_handler/protagonist_mask_handler.gd" id="12_77hjl"]
+[ext_resource type="Texture2D" uid="uid://bh5ew8dw1wo2u" path="res://assets/sprites/ggjmask_cat.png" id="12_tqxxy"]
+[ext_resource type="Texture2D" uid="uid://cls30rpiv30fg" path="res://assets/sprites/ggjmask_condor.png" id="13_5ay1a"]
+[ext_resource type="Texture2D" uid="uid://dghu3xofjc1x3" path="res://assets/sprites/ggjmask_fox.png" id="14_ldkr4"]
+[ext_resource type="Texture2D" uid="uid://dlamyaccemw50" path="res://assets/sprites/ggjmask_lamb.png" id="15_liy57"]
+[ext_resource type="Texture2D" uid="uid://dxttak57lmkww" path="res://assets/sprites/ggjmask_mantis.png" id="16_mwyo0"]
+[ext_resource type="Texture2D" uid="uid://c142d2hjawl0d" path="res://assets/sprites/ggjmask_snake.png" id="17_s76x2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rvs2r"]
+load_path = "res://.godot/imported/ggjmask1.png-700d2137b5c08db6eba0b6d075a2b1fa.ctex"
 
 [node name="GameScene" type="Node2D" unique_id=2107874921]
 
@@ -174,6 +184,58 @@ offset_right = 487.392
 offset_bottom = -516.104
 scale = Vector2(0.845, 0.845)
 max_x = 1400.0
+
+[node name="MaskSprite" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" unique_id=1606291848]
+z_index = 2
+position = Vector2(8.695, 0)
+scale = Vector2(0.28, 0.28)
+texture = SubResource("CompressedTexture2D_rvs2r")
+
+[node name="ProtagonistMaskHandler" type="Control" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler" unique_id=560254060]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1576.392
+offset_top = -234.156
+offset_right = 1616.392
+offset_bottom = -194.156
+script = ExtResource("12_77hjl")
+
+[node name="Cat" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/ProtagonistMaskHandler" unique_id=595752977]
+visible = false
+position = Vector2(0, -28)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_tqxxy")
+
+[node name="Condor" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/ProtagonistMaskHandler" unique_id=934772693]
+visible = false
+position = Vector2(24, 12)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_5ay1a")
+
+[node name="Fox" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/ProtagonistMaskHandler" unique_id=1197388917]
+visible = false
+position = Vector2(-28, -35)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("14_ldkr4")
+
+[node name="Lamb" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/ProtagonistMaskHandler" unique_id=670687248]
+visible = false
+position = Vector2(42, 7)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_liy57")
+
+[node name="Mantis" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/ProtagonistMaskHandler" unique_id=837377568]
+visible = false
+position = Vector2(-35, -62)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("16_mwyo0")
+
+[node name="Snake" type="Sprite2D" parent="CanvasLayer/Panel/DialogueBox/SpriteHandler/ProtagonistMaskHandler" unique_id=1685913780]
+visible = false
+position = Vector2(12, 86)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("17_s76x2")
 
 [node name="BGMAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1162745885]
 stream = ExtResource("9_utbpp")
