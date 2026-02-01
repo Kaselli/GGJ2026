@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ccv5vwtmxj27e"]
+
+[ext_resource type="PackedScene" uid="uid://ltubbbjuqn4u" path="res://scenes/game_scene.tscn" id="1_6y1ss"]
+[ext_resource type="StyleBox" uid="uid://cpsxuwjf4osy2" path="res://assets/resources/ending_style_box.tres" id="2_4owvb"]
+
+[node name="ending_lamb" type="Node2D" unique_id=365449638]
+
+[node name="GameScene" parent="." unique_id=2107874921 instance=ExtResource("1_6y1ss")]
+
+[node name="Panel" parent="GameScene/CanvasLayer" parent_id_path=PackedInt32Array(2107874921, 509706036) index="2" unique_id=619500761]
+anchor_top = 0.8
+theme_override_styles/panel = ExtResource("2_4owvb")
+
+[node name="CharacterNameHandler" parent="GameScene/CanvasLayer/Panel" index="0" unique_id=2009634505]
+offset_left = 212.0
+offset_right = 372.0
+
+[node name="ProtagNameHandler" parent="GameScene/CanvasLayer/Panel" index="1" unique_id=1696332384]
+offset_left = 1479.0
+offset_right = 1639.0
+
+[node name="text" parent="GameScene/CanvasLayer/Panel/DialogueBox" parent_id_path=PackedInt32Array(2107874921, 802478050) index="0" unique_id=732094933]
+text = "[i]testsetsetssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+asdfsdfasdfasdfasdf
+asdfasdfasdfdasdfasdf
+asdfasdf[/i]"
+
+[node name="SpriteHandler" parent="GameScene/CanvasLayer/Panel/DialogueBox" parent_id_path=PackedInt32Array(2107874921, 802478050) index="3" unique_id=753496223]
+visible = false
+
+[node name="LeftSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" index="0" unique_id=295544699]
+visible = false
+
+[node name="RightSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" index="1" unique_id=1405184148]
+visible = false
+
+[node name="MaskSlider" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" index="2" unique_id=267539981]
+visible = false
+
+[node name="MaskSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" index="0" unique_id=1606291848]
+visible = false
+
+[node name="ProtagonistMaskHandler" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" index="3" unique_id=560254060]
+visible = false
+
+[editable path="GameScene"]

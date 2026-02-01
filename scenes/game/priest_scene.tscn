@@ -11,8 +11,13 @@
 [node name="LeftSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="0" unique_id=295544699]
 texture = ExtResource("2_b5h0u")
 
-[node name="MaskSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" parent_id_path=PackedInt32Array(2107874921, 267539981) index="0" unique_id=1606291848]
-position = Vector2(65.09819, -53.699383)
+[node name="MaskSlider" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler" parent_id_path=PackedInt32Array(2107874921, 753496223) index="2" unique_id=267539981]
+offset_left = 542.4
+offset_top = -560.48
+offset_right = 542.4
+offset_bottom = -560.48
+
+[node name="MaskSprite" parent="GameScene/CanvasLayer/Panel/DialogueBox/SpriteHandler/MaskSlider" index="0" unique_id=1606291848]
 texture = ExtResource("3_c2u2i")
 
 [editable path="GameScene"]
