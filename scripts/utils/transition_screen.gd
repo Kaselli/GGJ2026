@@ -25,5 +25,7 @@ func play_transition_in() -> void:
 	animation_player.play("fade_in")
 
 func black_screen() -> void:
+	if animation_player.is_playing():
+		animation_player.stop()
 	color_rect.visible = true
 	color_rect.modulate = Color(0, 0, 0, 1)
