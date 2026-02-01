@@ -23,3 +23,7 @@ func play_transition_out() -> void:
 func play_transition_in() -> void:
 	color_rect.visible = true
 	animation_player.play("fade_in")
+
+func black_screen() -> void:
+	color_rect.visible = true
+	color_rect.modulate = Color(0, 0, 0, 1)

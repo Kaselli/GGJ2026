@@ -303,11 +303,15 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		protagonist_mask_handler.flicker_mask(mask, duration)
 	elif params[0] == "hidemariamask":
 		protagonist_mask_handler.hide_all_masks()
+	elif params[0] == "blackscreen":
+		TransitionScreen.black_screen()
+	elif params[0] == "transitionin":
+		TransitionScreen.play_transition_in()	
 
 	########################### SOUND SIGNALS HANDLED IN THIS SECTION ###########################
 	elif params[0] == "playsound":
 		if params.size() < 2:
-			print("[playsound] Warning: No sound file specified.")
+			print("[playsound] Warning: No sound file path specified.")
 			return
 		if not ResourceLoader.exists(params[1]):
 			print("[playsound] Warning: Sound file " + params[1] + " does not exist.")
@@ -381,7 +385,7 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		print("signal(triggerending,\"endingname\")")
 
 func maximize_dialogue_size():
-	anchor_right = 0.995
+	anchor_right = 0.99
 
 func minimize_dialogue_size():
 	anchor_right = 0.75
