@@ -334,9 +334,6 @@ func _on_ez_dialogue_custom_signal_received(value: String):
 		if params.size() < 2:
 			print("[triggerending] Warning: No ending specified.")
 			return
-		if not ResourceLoader.exists("res://scenes/endings/" + params[1] + ".tscn"):
-			print("[triggerending] Warning: Ending scene res://scenes/endings/" + params[1] + ".tscn does not exist.")
-			return
 		get_tree().change_scene_to_file("res://scenes/endings/" + params[1] + ".tscn")
 
 	########################### UNHANDLED SIGNALS HANDLED IN THIS SECTION ###########################
