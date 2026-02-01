@@ -20,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dxttak57lmkww" path="res://assets/sprites/ggjmask_mantis.png" id="16_mwyo0"]
 [ext_resource type="Texture2D" uid="uid://c142d2hjawl0d" path="res://assets/sprites/ggjmask_snake.png" id="17_s76x2"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77hjl"]
+bg_color = Color(0.16, 0.16, 0.16, 1)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rvs2r"]
 load_path = "res://.godot/imported/ggjmask1.png-700d2137b5c08db6eba0b6d075a2b1fa.ctex"
 
@@ -66,11 +69,11 @@ horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="CanvasLayer" unique_id=619500761]
 anchors_preset = -1
-anchor_left = 0.01
 anchor_top = 0.6
-anchor_right = 0.99
-anchor_bottom = 0.98
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_77hjl")
 
 [node name="CharacterNameHandler" type="Panel" parent="CanvasLayer/Panel" unique_id=2009634505]
 custom_minimum_size = Vector2(50, 30)
